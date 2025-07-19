@@ -1,7 +1,7 @@
 {
   "NewsPage": {
     "title": "News",
-    "description": "Latest casino and gambling news, reviews and updates from the industry.",
+    "description": "Latest casino and gambling news, reviews and industry updates.",
     "noArticles": "No articles found."
   },
   "ArticlePage": {
@@ -12,26 +12,26 @@
   "HeroSection": {
     "title": "Your Complete Guide to Online Casinos in Canada",
     "subtitle": "We review and rank the best online casinos for Canadian players. Find the best bonuses, games, and more.",
-    "ctaButton": "See Top Casinos"
+    "ctaButton": "View top casinos"
   },
   "TopCasinosSection": {
-    "title": "Top Rated Online Casinos",
+    "title": "Top Online Casinos",
     "subtitle": "Our experts have reviewed and ranked the best casinos for you.",
-    "viewAll": "View All Casinos"
+    "viewAll": "View all casinos"
   },
   "FeaturedSlotsSection": {
     "title": "Featured Online Slots",
-    "subtitle": "Check out some of the most popular slot games.",
-    "viewAll": "View All Slots"
+    "subtitle": "Discover the most popular slot games.",
+    "viewAll": "View all slots"
   },
   "LatestNewsSection": {
     "title": "Latest News & Articles",
-    "subtitle": "Stay up to date with the latest stories from the industry.",
-    "viewAll": "Read All Articles"
+    "subtitle": "Stay updated with the latest industry developments.",
+    "viewAll": "Read all articles"
   },
   "CasinoReviewsPage": {
     "title": "Casino Reviews",
-    "description": "Comprehensive reviews of the best online casinos with bonuses, ratings and expert analysis.",
+    "description": "Complete reviews of the best online casinos with bonuses, ratings and expert analysis.",
     "subtitle": "Find the best online casinos according to our experts"
   },
   "CasinoReviewPage": {
@@ -39,44 +39,128 @@
     "rating": "Rating",
     "bonus": "Bonus",
     "license": "License",
-    "playNow": "Play Now",
+    "playNow": "Play now",
     "pros": "Pros",
     "cons": "Cons",
-    "detailedReview": "Detailed Review"
+    "detailedReview": "Detailed review"
   },
   "SlotsPage": {
     "title": "Slots",
-    "description": "Best online slots reviews, ratings and where to play them with bonuses and free spins.",
+    "description": "Best online slot reviews, ratings and where to play with bonuses and free spins.",
     "subtitle": "Discover the best slot games"
   },
   "SlotPage": {
     "backToSlots": "Back to slots",
-    "description": "Description",
     "provider": "Provider",
-    "rating": "Rating",
-    "features": "Features",
     "rtp": "RTP",
     "volatility": "Volatility",
-    "minBet": "Min Bet",
-    "maxBet": "Max Bet",
-    "playDemo": "Play Demo",
-    "playReal": "Play for Real",
-    "playNow": "Play Now"
+    "minBet": "Min bet",
+    "maxBet": "Max bet",
+    "paylines": "Paylines",
+    "playDemo": "Play demo",
+    "playForReal": "Play for real"
+  },
+  "Header": {
+    "home": "Home",
+    "casinos": "Casinos",
+    "slots": "Slots",
+    "news": "News",
+    "bonuses": "Bonuses",
+    "about": "About"
+  },
+  "Footer": {
+    "description": "Your trusted guide in the world of online casinos. Expert reviews and ratings.",
+    "quickLinks": "Quick links",
+    "legal": "Legal information",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfUse": "Terms of Use",
+    "sitemap": "Sitemap",
+    "contacts": "Contacts",
+    "allRightsReserved": "All rights reserved",
+    "casinos": "Casinos",
+    "slots": "Slots",
+    "bonuses": "Bonuses",
+    "news": "News"
+  },
+  "BonusCard": {
+    "types": {
+      "welcome": "Welcome",
+      "deposit": "Deposit",
+      "no-deposit": "No deposit",
+      "free-spins": "Free spins",
+      "cashback": "Cashback",
+      "reload": "Reload"
+    },
+    "amount": "Bonus amount",
+    "promo_code": "Promo code",
+    "available_at": "Available at",
+    "valid_until": "Valid until {date}",
+    "expired": "Expired",
+    "view_details": "View details",
+    "visit_casino": "Visit casino"
+  },
+  "CommentCard": {
+    "commented_on_casino": "Comment on casino:",
+    "commented_on_article": "Comment on article:",
+    "commented_on_slot": "Comment on slot:",
+    "status": {
+      "pending": "Pending",
+      "rejected": "Rejected"
+    }
+  },
+  "CategoryCard": {
+    "featured": "Featured",
+    "content_count": "{count} items",
+    "articles": "Articles",
+    "slots": "Slots",
+    "no_content": "No content yet",
+    "view_category": "View category"
+  },
+  "BonusesPage": {
+    "title": "Casino Bonuses",
+    "description": "Best online casino bonuses: welcome packages, free spins, no deposit bonuses and cashback offers.",
+    "noBonuses": "No bonuses found.",
+    "allTypes": "All types",
+    "types": {
+      "welcome": "Welcome",
+      "deposit": "Deposit",
+      "no-deposit": "No deposit",
+      "free-spins": "Free spins",
+      "cashback": "Cashback",
+      "reload": "Reload"
+    }
+  },
+  "BonusPage": {
+    "home": "Home",
+    "bonuses": "Bonuses",
+    "types": {
+      "welcome": "Welcome",
+      "deposit": "Deposit",
+      "no-deposit": "No deposit",
+      "free-spins": "Free spins",
+      "cashback": "Cashback",
+      "reload": "Reload"
+    },
+    "expired": "Expired",
+    "availableAt": "Available at",
+    "visitCasino": "Visit casino",
+    "termsAndConditions": "Terms and conditions",
+    "bonusDetails": "Bonus details",
+    "amount": "Amount",
+    "promoCode": "Promo code",
+    "copy": "Copy",
+    "wageringRequirements": "Wagering requirements",
+    "validUntil": "Valid until",
+    "claimBonus": "Claim bonus",
+    "termsApply": "Terms apply"
   },
   "LocaleSwitcher": {
     "label": "Select language",
     "selectLanguage": "Select language",
     "locale": "{locale, select, it {Italiano} en {English} uk {Українська} other {Unknown}}"
   },
-  "pages": {
+  "HomePage": {
     "home": "Home",
-    "homeDescription": "Best online casinos and slots reviews for Canadian players. Find top bonuses, games and expert ratings.",
-    "contacts": "Contacts",
-    "privacy": "Privacy Policy",
-    "terms": "Terms of Use",
-    "sitemap": "Sitemap",
-    "news": "News",
-    "casino-reviews": "Casino Reviews",
-    "slots": "Slots"
+    "homeDescription": "Best online casinos and slots reviews for Canadian players. Find top bonuses, games and expert ratings."
   }
 } 

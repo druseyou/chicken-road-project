@@ -51,32 +51,116 @@
   },
   "SlotPage": {
     "backToSlots": "Повернутися до слотів",
-    "description": "Опис",
     "provider": "Провайдер",
-    "rating": "Рейтинг",
-    "features": "Особливості",
     "rtp": "RTP",
     "volatility": "Волатильність",
     "minBet": "Мін. ставка",
     "maxBet": "Макс. ставка",
-    "playDemo": "Демо гра",
-    "playReal": "Грати на реальні",
-    "playNow": "Грати зараз"
+    "paylines": "Лінії виплат",
+    "playDemo": "Демо-гра",
+    "playForReal": "Грати на гроші"
+  },
+  "Header": {
+    "home": "Головна",
+    "casinos": "Казино",
+    "slots": "Слоти",
+    "news": "Новини",
+    "bonuses": "Бонуси",
+    "about": "Про нас"
+  },
+  "Footer": {
+    "description": "Ваш надійний гід у світі онлайн казино. Експертні огляди та рейтинги.",
+    "quickLinks": "Швидкі посилання",
+    "legal": "Правова інформація",
+    "privacyPolicy": "Політика конфіденційності",
+    "termsOfUse": "Умови використання",
+    "sitemap": "Карта сайту",
+    "contacts": "Контакти",
+    "allRightsReserved": "Всі права захищені",
+    "casinos": "Казино",
+    "slots": "Слоти",
+    "bonuses": "Бонуси",
+    "news": "Новини"
+  },
+  "BonusCard": {
+    "types": {
+      "welcome": "Вітальний",
+      "deposit": "Депозитний",
+      "no-deposit": "Бездепозитний",
+      "free-spins": "Фріспіни",
+      "cashback": "Кешбек",
+      "reload": "Перезавантаження"
+    },
+    "amount": "Сума бонусу",
+    "promo_code": "Промо-код",
+    "available_at": "Доступний в",
+    "valid_until": "Діє до {date}",
+    "expired": "Закінчився",
+    "view_details": "Детальніше",
+    "visit_casino": "Відвідати казино"
+  },
+  "CommentCard": {
+    "commented_on_casino": "Коментар до казино:",
+    "commented_on_article": "Коментар до статті:",
+    "commented_on_slot": "Коментар до слота:",
+    "status": {
+      "pending": "На модерації",
+      "rejected": "Відхилено"
+    }
+  },
+  "CategoryCard": {
+    "featured": "Рекомендована",
+    "content_count": "{count} матеріалів",
+    "articles": "Статті",
+    "slots": "Слоти",
+    "no_content": "Поки немає контенту",
+    "view_category": "Переглянути категорію"
+  },
+  "BonusesPage": {
+    "title": "Бонуси казино",
+    "description": "Найкращі бонуси онлайн казино: вітальні пакети, фріспіни, бездепозитні бонуси та кешбек пропозиції.",
+    "noBonuses": "Бонуси не знайдено.",
+    "allTypes": "Всі типи",
+    "types": {
+      "welcome": "Вітальні",
+      "deposit": "Депозитні",
+      "no-deposit": "Бездепозитні",
+      "free-spins": "Фріспіни",
+      "cashback": "Кешбек",
+      "reload": "Перезавантаження"
+    }
+  },
+  "BonusPage": {
+    "home": "Головна",
+    "bonuses": "Бонуси",
+    "types": {
+      "welcome": "Вітальний",
+      "deposit": "Депозитний",
+      "no-deposit": "Бездепозитний",
+      "free-spins": "Фріспіни",
+      "cashback": "Кешбек",
+      "reload": "Перезавантаження"
+    },
+    "expired": "Закінчився",
+    "availableAt": "Доступний в",
+    "visitCasino": "Відвідати казино",
+    "termsAndConditions": "Умови та положення",
+    "bonusDetails": "Деталі бонусу",
+    "amount": "Сума",
+    "promoCode": "Промо-код",
+    "copy": "Копіювати",
+    "wageringRequirements": "Вимоги по відіграшу",
+    "validUntil": "Діє до",
+    "claimBonus": "Отримати бонус",
+    "termsApply": "Застосовуються умови"
   },
   "LocaleSwitcher": {
     "label": "Оберіть мову",
     "selectLanguage": "Оберіть мову",
     "locale": "{locale, select, it {Italiano} en {English} uk {Українська} other {Невідомо}}"
   },
-  "pages": {
+  "HomePage": {
     "home": "Головна",
-    "homeDescription": "Найкращі огляди онлайн казино та слотів для українських гравців. Знайдіть топ бонуси, ігри та експертні рейтинги.",
-    "contacts": "Контакти",
-    "privacy": "Політика конфіденційності",
-    "terms": "Умови використання",
-    "sitemap": "Карта сайту",
-    "news": "Новини",
-    "casino-reviews": "Огляди казино",
-    "slots": "Слоти"
+    "homeDescription": "Найкращі огляди онлайн казино та слотів для українських гравців. Знайдіть топ бонуси, ігри та експертні рейтинги."
   }
 } 

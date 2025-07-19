@@ -1,7 +1,7 @@
 {
   "NewsPage": {
     "title": "Notizie",
-    "description": "Ultime notizie sui casinò e sul gioco d'azzardo, recensioni e aggiornamenti dal settore.",
+    "description": "Ultime notizie sui casinò e sul gioco d'azzardo, recensioni e aggiornamenti del settore.",
     "noArticles": "Nessun articolo trovato."
   },
   "ArticlePage": {
@@ -15,23 +15,23 @@
     "ctaButton": "Vedi i migliori casinò"
   },
   "TopCasinosSection": {
-    "title": "Casinò online più votati",
+    "title": "I migliori casinò online",
     "subtitle": "I nostri esperti hanno recensito e classificato i migliori casinò per te.",
-    "viewAll": "Visualizza tutti i casinò"
+    "viewAll": "Vedi tutti i casinò"
   },
   "FeaturedSlotsSection": {
     "title": "Slot online in evidenza",
-    "subtitle": "Scopri alcuni dei giochi di slot più popolari.",
-    "viewAll": "Visualizza tutte le slot"
+    "subtitle": "Scopri i giochi di slot più popolari.",
+    "viewAll": "Vedi tutte le slot"
   },
   "LatestNewsSection": {
     "title": "Ultime notizie e articoli",
-    "subtitle": "Rimani aggiornato con le ultime storie del settore.",
+    "subtitle": "Rimani aggiornato sugli ultimi sviluppi del settore.",
     "viewAll": "Leggi tutti gli articoli"
   },
   "CasinoReviewsPage": {
-    "title": "Recensioni di casinò",
-    "description": "Recensioni complete dei migliori casinò online con bonus, valutazioni e analisi degli esperti.",
+    "title": "Recensioni dei casinò",
+    "description": "Recensioni complete dei migliori casinò online con bonus, valutazioni e analisi esperte.",
     "subtitle": "Trova i migliori casinò online secondo i nostri esperti"
   },
   "CasinoReviewPage": {
@@ -46,37 +46,121 @@
   },
   "SlotsPage": {
     "title": "Slot",
-    "description": "Migliori recensioni di slot online, valutazioni e dove giocarle con bonus e giri gratuiti.",
-    "subtitle": "Scopri le migliori slot online"
+    "description": "Le migliori recensioni di slot online, valutazioni e dove giocare con bonus e giri gratuiti.",
+    "subtitle": "Scopri i migliori giochi di slot"
   },
   "SlotPage": {
     "backToSlots": "Torna alle slot",
-    "description": "Descrizione",
-    "provider": "Fornitore",
-    "rating": "Valutazione",
-    "features": "Caratteristiche",
+    "provider": "Provider",
     "rtp": "RTP",
     "volatility": "Volatilità",
-    "minBet": "Puntata min.",
-    "maxBet": "Puntata max.",
+    "minBet": "Puntata min",
+    "maxBet": "Puntata max",
+    "paylines": "Linee di pagamento",
     "playDemo": "Gioca demo",
-    "playReal": "Gioca per soldi veri",
-    "playNow": "Gioca ora"
+    "playForReal": "Gioca con soldi veri"
+  },
+  "Header": {
+    "home": "Home",
+    "casinos": "Casinò",
+    "slots": "Slot",
+    "news": "Notizie",
+    "bonuses": "Bonus",
+    "about": "Chi siamo"
+  },
+  "Footer": {
+    "description": "La tua guida affidabile nel mondo dei casinò online. Recensioni e valutazioni esperte.",
+    "quickLinks": "Link rapidi",
+    "legal": "Informazioni legali",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfUse": "Termini di utilizzo",
+    "sitemap": "Mappa del sito",
+    "contacts": "Contatti",
+    "allRightsReserved": "Tutti i diritti riservati",
+    "casinos": "Casinò",
+    "slots": "Slot",
+    "bonuses": "Bonus",
+    "news": "Notizie"
+  },
+  "BonusCard": {
+    "types": {
+      "welcome": "Benvenuto",
+      "deposit": "Deposito",
+      "no-deposit": "Senza deposito",
+      "free-spins": "Giri gratuiti",
+      "cashback": "Cashback",
+      "reload": "Ricarica"
+    },
+    "amount": "Importo bonus",
+    "promo_code": "Codice promo",
+    "available_at": "Disponibile su",
+    "valid_until": "Valido fino al {date}",
+    "expired": "Scaduto",
+    "view_details": "Dettagli",
+    "visit_casino": "Visita casinò"
+  },
+  "CommentCard": {
+    "commented_on_casino": "Commento su casinò:",
+    "commented_on_article": "Commento su articolo:",
+    "commented_on_slot": "Commento su slot:",
+    "status": {
+      "pending": "In attesa",
+      "rejected": "Rifiutato"
+    }
+  },
+  "CategoryCard": {
+    "featured": "In evidenza",
+    "content_count": "{count} contenuti",
+    "articles": "Articoli",
+    "slots": "Slot",
+    "no_content": "Nessun contenuto ancora",
+    "view_category": "Visualizza categoria"
+  },
+  "BonusesPage": {
+    "title": "Bonus casinò",
+    "description": "I migliori bonus dei casinò online: pacchetti di benvenuto, giri gratuiti, bonus senza deposito e offerte cashback.",
+    "noBonuses": "Nessun bonus trovato.",
+    "allTypes": "Tutti i tipi",
+    "types": {
+      "welcome": "Benvenuto",
+      "deposit": "Deposito",
+      "no-deposit": "Senza deposito",
+      "free-spins": "Giri gratuiti",
+      "cashback": "Cashback",
+      "reload": "Ricarica"
+    }
+  },
+  "BonusPage": {
+    "home": "Home",
+    "bonuses": "Bonus",
+    "types": {
+      "welcome": "Benvenuto",
+      "deposit": "Deposito",
+      "no-deposit": "Senza deposito",
+      "free-spins": "Giri gratuiti",
+      "cashback": "Cashback",
+      "reload": "Ricarica"
+    },
+    "expired": "Scaduto",
+    "availableAt": "Disponibile su",
+    "visitCasino": "Visita casinò",
+    "termsAndConditions": "Termini e condizioni",
+    "bonusDetails": "Dettagli bonus",
+    "amount": "Importo",
+    "promoCode": "Codice promo",
+    "copy": "Copia",
+    "wageringRequirements": "Requisiti di scommessa",
+    "validUntil": "Valido fino al",
+    "claimBonus": "Richiedi bonus",
+    "termsApply": "Si applicano i termini"
   },
   "LocaleSwitcher": {
     "label": "Seleziona lingua",
     "selectLanguage": "Seleziona lingua",
     "locale": "{locale, select, it {Italiano} en {English} uk {Українська} other {Sconosciuto}}"
   },
-  "pages": {
-    "home": "Pagina iniziale",
-    "homeDescription": "Migliori recensioni di casinò e slot online per giocatori italiani. Trova i migliori bonus, giochi e valutazioni degli esperti.",
-    "contacts": "Contatti",
-    "privacy": "Politica sulla riservatezza",
-    "terms": "Termini di utilizzo",
-    "sitemap": "Mappa del sito",
-    "news": "Notizie",
-    "casino-reviews": "Recensioni di casinò",
-    "slots": "Slot"
+  "HomePage": {
+    "home": "Home",
+    "homeDescription": "Migliori recensioni di casinò e slot online per giocatori italiani. Trova i migliori bonus, giochi e valutazioni degli esperti."
   }
 } 

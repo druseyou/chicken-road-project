@@ -3,7 +3,7 @@ import {useTranslations} from 'next-intl';
 import LocaleSwitcher from './locale/LocaleSwitcher';
 
 export default function Header() {
-  const t = useTranslations('pages');
+  const t = useTranslations('Header');
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
@@ -15,18 +15,28 @@ export default function Header() {
         <nav className="hidden md:block">
           <ul className="flex space-x-6">
             <li>
+              <Link href="/" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">
+                {t('home')}
+              </Link>
+            </li>
+            <li>
               <Link href="/news" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">
                 {t('news')}
               </Link>
             </li>
             <li>
               <Link href="/casino-reviews" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">
-                {t('casino-reviews')}
+                {t('casinos')}
               </Link>
             </li>
             <li>
               <Link href="/slots" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">
                 {t('slots')}
+              </Link>
+            </li>
+            <li>
+              <Link href="/bonuses" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">
+                {t('bonuses')}
               </Link>
             </li>
           </ul>

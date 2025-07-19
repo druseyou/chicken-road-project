@@ -15,7 +15,7 @@ interface HomePageProps {
 
 export async function generateMetadata({ params }: HomePageProps): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations('pages');
+  const t = await getTranslations('HomePage');
   
   // Використовуємо відносні URLs для Next.js metadata
   const canonicalPath = '/';
@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
 export default async function HomePage(props: HomePageProps) {
   const { params } = props;
   const { locale } = await params;
-  const t = await getTranslations('pages');
+  const t = await getTranslations('HomePage');
 
   const [casinos, slots, articles] = await Promise.all([
     getCasinos(locale),
