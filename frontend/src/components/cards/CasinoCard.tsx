@@ -4,6 +4,7 @@ import { Casino } from '@/types';
 import { getStrapiURL } from '@/services/api';
 import { Card } from '@/ui/components/molecules';
 import { Heading, Text, Button, Rating, StatusBadge, StatCard } from '@/ui/components/atoms';
+import { useTranslations } from 'next-intl';
 
 interface CasinoCardProps {
   casino: Casino;
@@ -13,6 +14,7 @@ interface CasinoCardProps {
 }
 
 export default function CasinoCard({ casino, rank, isExclusive, isFeatured }: CasinoCardProps) {
+  const t = useTranslations('Cards');
   if (!casino) {
     return null;
   }
@@ -134,7 +136,7 @@ export default function CasinoCard({ casino, rank, isExclusive, isFeatured }: Ca
                 #{rank}
               </div>
               <Text size="sm" color="muted" className="uppercase tracking-wide">
-                Best Casino
+                {t('bestCasino')}
               </Text>
             </div>
             
@@ -143,7 +145,7 @@ export default function CasinoCard({ casino, rank, isExclusive, isFeatured }: Ca
                 variant="casino" 
                 className="w-full py-3 text-lg font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
               >
-                Get Bonus
+                {t('getBonus')}
               </Button>
             </Link>
             
@@ -151,7 +153,7 @@ export default function CasinoCard({ casino, rank, isExclusive, isFeatured }: Ca
               href={`/casino-reviews/${slug}`} 
               className="text-sm text-gray-600 hover:text-gray-800 underline transition-colors"
             >
-              Read Review
+              {t('readReview')}
             </Link>
           </div>
         </div>

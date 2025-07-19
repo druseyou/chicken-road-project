@@ -19,13 +19,13 @@ export default async function HeroSection() {
           {/* Trust Indicators */}
           <div className="flex justify-center gap-4 mb-8">
             <StatusBadge variant="featured" size="md">
-              #1 Casino Guide
+              {t('badges.casinoGuide')}
             </StatusBadge>
             <StatusBadge variant="exclusive" size="md">
-              100% Independent
+              {t('badges.independent')}
             </StatusBadge>
             <StatusBadge variant="new" size="md">
-              10 Years Online
+              {t('badges.yearsOnline')}
             </StatusBadge>
           </div>
 
@@ -52,7 +52,7 @@ export default async function HeroSection() {
                 120+
               </div>
               <Text size="sm" className="text-blue-200 uppercase tracking-wide">
-                Casinos Reviewed
+                {t('stats.casinosReviewed')}
               </Text>
             </div>
             <div className="text-center">
@@ -60,7 +60,7 @@ export default async function HeroSection() {
                 10
               </div>
               <Text size="sm" className="text-blue-200 uppercase tracking-wide">
-                Years Experience
+                {t('stats.yearsExperience')}
               </Text>
             </div>
             <div className="text-center">
@@ -68,7 +68,7 @@ export default async function HeroSection() {
                 21K+
               </div>
               <Text size="sm" className="text-blue-200 uppercase tracking-wide">
-                Free Games
+                {t('stats.freeGames')}
               </Text>
             </div>
             <div className="text-center">
@@ -76,7 +76,7 @@ export default async function HeroSection() {
                 $1M+
               </div>
               <Text size="sm" className="text-blue-200 uppercase tracking-wide">
-                Bonuses Found
+                {t('stats.bonusesFound')}
               </Text>
             </div>
           </div>
@@ -88,7 +88,7 @@ export default async function HeroSection() {
                 variant="casino" 
                 className="px-8 py-4 text-lg font-bold shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300"
               >
-                🎰 Find Best Casinos
+                {t('buttons.findCasinos')}
               </Button>
             </Link>
             <Link href="/bonuses">
@@ -96,7 +96,7 @@ export default async function HeroSection() {
                 variant="outline" 
                 className="px-8 py-4 text-lg font-bold bg-white/10 border-white/30 text-white hover:bg-white/20 backdrop-blur-sm"
               >
-                💰 Claim Bonuses
+                {t('buttons.claimBonuses')}
               </Button>
             </Link>
           </div>
@@ -107,28 +107,28 @@ export default async function HeroSection() {
               href="/casino-reviews" 
               className="text-blue-200 hover:text-white transition-colors underline decoration-blue-300 hover:decoration-white"
             >
-              Casino Reviews
+              {t('quickNav.casinoReviews')}
             </Link>
             <span className="text-blue-300">•</span>
             <Link 
               href="/bonuses" 
               className="text-blue-200 hover:text-white transition-colors underline decoration-blue-300 hover:decoration-white"
             >
-              Bonus Offers
+              {t('quickNav.bonusOffers')}
             </Link>
             <span className="text-blue-300">•</span>
             <Link 
               href="/free-games" 
               className="text-blue-200 hover:text-white transition-colors underline decoration-blue-300 hover:decoration-white"
             >
-              Free Games
+              {t('quickNav.freeGames')}
             </Link>
             <span className="text-blue-300">•</span>
             <Link 
               href="/slots" 
               className="text-blue-200 hover:text-white transition-colors underline decoration-blue-300 hover:decoration-white"
             >
-              Slots
+              {t('quickNav.slots')}
             </Link>
           </div>
         </div>

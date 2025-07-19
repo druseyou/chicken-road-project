@@ -3,12 +3,15 @@ import Image from 'next/image';
 import { Article } from '@/types';
 import { getStrapiURL } from '@/services/api';
 import { Card, CardContent, Heading, Text, Button } from '@/ui';
+import { useTranslations } from 'next-intl';
 
 interface DetailedArticleCardProps {
   article: Article;
 }
 
 export default function DetailedArticleCard({ article }: DetailedArticleCardProps) {
+  const t = useTranslations('Cards');
+  
   if (!article) {
     return null;
   }
@@ -41,7 +44,7 @@ export default function DetailedArticleCard({ article }: DetailedArticleCardProp
           </div>
           <Link href={`/news/${slug}`} className="mt-4 inline-block">
             <Button variant="success">
-              Read More
+              {t('readMore')}
             </Button>
           </Link>
         </CardContent>

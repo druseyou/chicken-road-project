@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '@/ui/utils/cn';
+import { useTranslations } from 'next-intl';
 
 export interface RatingProps extends React.HTMLAttributes<HTMLDivElement> {
   value: number;
@@ -8,8 +9,7 @@ export interface RatingProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: 'default' | 'casino' | 'minimal';
   showValue?: boolean;
   showLabel?: boolean;
-  label?: string;
-  readonly?: boolean;
+  precision?: number;
 }
 
 const Rating = React.forwardRef<HTMLDivElement, RatingProps>(
@@ -21,10 +21,11 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>(
     variant = 'default',
     showValue = false,
     showLabel = false,
-    label,
-    readonly = true,
+    precision = 1,
     ...props 
   }, ref) => {
+    const t = useTranslations('Rating');
+    
     const normalizedValue = Math.min(Math.max(value, 0), maxValue);
     const filledStars = Math.floor(normalizedValue);
     const hasHalfStar = normalizedValue % 1 >= 0.5;
@@ -36,18 +37,18 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>(
       lg: 'text-lg',
     };
 
-    const variants = {
+    const starColors = {
       default: 'text-yellow-400',
       casino: 'text-yellow-500',
       minimal: 'text-gray-400',
     };
 
     const getRatingLabel = (rating: number): string => {
-      if (rating >= 4.5) return 'Excellent';
-      if (rating >= 4.0) return 'Great';
-      if (rating >= 3.5) return 'Good';
-      if (rating >= 3.0) return 'Fair';
-      return 'Poor';
+      if (rating >= 4.5) return t('excellent');
+      if (rating >= 4.0) return t('great');
+      if (rating >= 3.5) return t('good');
+      if (rating >= 3.0) return t('fair');
+      return t('poor');
     };
 
     const getRatingColor = (rating: number): string => {
@@ -65,28 +66,28 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>(
     );
 
     return (
-      <div className={classes} ref={ref} {...props}>
+      <div ref={ref} className={classes} {...props}>
         <div className="flex items-center">
           {/* Filled stars */}
           {Array.from({ length: filledStars }).map((_, index) => (
-            <span key={`filled-${index}`} className={cn('select-none', variants[variant])}>
+            <span key={`filled-${index}`} className={cn('select-none', starColors[variant])}>
               ★
             </span>
           ))}
-          
+
           {/* Half star */}
           {hasHalfStar && (
-            <span className={cn('relative select-none', variants[variant])}>
+            <span className={cn('relative select-none', starColors[variant])}>
               <span className="text-gray-300">★</span>
               <span 
-                className={cn('absolute inset-0 overflow-hidden', variants[variant])}
+                className={cn('absolute inset-0 overflow-hidden', starColors[variant])}
                 style={{ width: '50%' }}
               >
                 ★
               </span>
             </span>
           )}
-          
+
           {/* Empty stars */}
           {Array.from({ length: emptyStars }).map((_, index) => (
             <span key={`empty-${index}`} className="text-gray-300 select-none">
@@ -95,17 +96,15 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>(
           ))}
         </div>
 
-        {/* Rating value */}
         {showValue && (
           <span className="text-sm font-medium text-gray-600 ml-1">
-            {value.toFixed(1)}/5
+            {value.toFixed(precision)}/5
           </span>
         )}
 
-        {/* Rating label */}
         {showLabel && (
           <span className={cn('text-sm font-medium ml-1', getRatingColor(value))}>
-            {label || getRatingLabel(value)}
+            {getRatingLabel(value)}
           </span>
         )}
       </div>

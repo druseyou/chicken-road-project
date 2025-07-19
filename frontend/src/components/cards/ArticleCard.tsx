@@ -1,9 +1,11 @@
 import { Link } from '@/i18n/navigation';
+import Image from 'next/image';
 import { Article } from '@/types';
 import { getStrapiURL } from '@/services/api';
 import { Card, CardContent } from '@/ui/components/molecules';
 import { Heading, Text, StatusBadge } from '@/ui/components/atoms';
 import OptimizedImage from '@/components/ui/OptimizedImage';
+import { useTranslations } from 'next-intl';
 
 interface ArticleCardProps {
   article: Article;
@@ -16,6 +18,8 @@ export default function ArticleCard({
   featured = false,
   showCategory = true 
 }: ArticleCardProps) {
+  const t = useTranslations('Cards');
+  
   if (!article) {
     return null;
   }
@@ -124,7 +128,7 @@ export default function ArticleCard({
           {/* Read more link */}
           <div className="flex items-center justify-between">
             <div className="flex items-center text-blue-600 text-sm font-medium group-hover:text-blue-700 transition-colors">
-              <span>Читати більше</span>
+              <span>{t('readMore')}</span>
               <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
@@ -135,7 +139,7 @@ export default function ArticleCard({
               <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span>3 хв</span>
+              <span>{t('readingTime')}</span>
             </div>
           </div>
         </CardContent>

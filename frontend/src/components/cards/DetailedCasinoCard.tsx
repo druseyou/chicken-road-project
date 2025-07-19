@@ -3,12 +3,14 @@ import { Link } from '@/i18n/navigation';
 import { Casino } from '@/types';
 import { getStrapiURL } from '@/services/api';
 import { Card, CardContent, Heading, Text, Button } from '@/ui';
+import { useTranslations } from 'next-intl';
 
 interface DetailedCasinoCardProps {
   casino: Casino;
 }
 
 export default function DetailedCasinoCard({ casino }: DetailedCasinoCardProps) {
+  const t = useTranslations('Cards');
   const { name, shortDescription, slug, logo } = casino;
   
   const imageUrl = logo?.url
@@ -38,7 +40,7 @@ export default function DetailedCasinoCard({ casino }: DetailedCasinoCardProps) 
           </div>
           <Link href={`/casino-reviews/${slug}`} className="mt-4 inline-block">
             <Button variant="success">
-              Read Review
+              {t('readReview')}
             </Button>
           </Link>
         </CardContent>

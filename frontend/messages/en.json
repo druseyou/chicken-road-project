@@ -2,7 +2,22 @@
   "NewsPage": {
     "title": "News",
     "description": "Latest casino and gambling news, reviews and industry updates.",
-    "noArticles": "No articles found."
+    "noArticles": "No articles found.",
+    "badges": {
+      "latest": "📰 Latest News",
+      "breaking": "🔥 Breaking",
+      "expert": "💎 Expert Analysis"
+    },
+    "sections": {
+      "featured": "🌟 Featured Articles",
+      "allNews": "📚 All News"
+    },
+    "stats": {
+      "totalArticles": "Total Articles",
+      "featured": "Featured",
+      "updates": "Updates",
+      "expertContent": "Expert Content"
+    }
   },
   "ArticlePage": {
     "backToNews": "Back to news",
@@ -12,7 +27,28 @@
   "HeroSection": {
     "title": "Your Complete Guide to Online Casinos in Canada",
     "subtitle": "We review and rank the best online casinos for Canadian players. Find the best bonuses, games, and more.",
-    "ctaButton": "View top casinos"
+    "ctaButton": "View top casinos",
+    "badges": {
+      "casinoGuide": "#1 Casino Guide",
+      "independent": "100% Independent", 
+      "yearsOnline": "10 Years Online"
+    },
+    "stats": {
+      "casinosReviewed": "Casinos Reviewed",
+      "yearsExperience": "Years Experience",
+      "freeGames": "Free Games",
+      "bonusesFound": "Bonuses Found"
+    },
+    "buttons": {
+      "findCasinos": "🎰 Find Best Casinos",
+      "claimBonuses": "💰 Claim Bonuses"
+    },
+    "quickNav": {
+      "casinoReviews": "Casino Reviews",
+      "bonusOffers": "Bonus Offers", 
+      "freeGames": "Free Games",
+      "slots": "Slots"
+    }
   },
   "TopCasinosSection": {
     "title": "Top Online Casinos",
@@ -32,7 +68,30 @@
   "CasinoReviewsPage": {
     "title": "Casino Reviews",
     "description": "Complete reviews of the best online casinos with bonuses, ratings and expert analysis.",
-    "subtitle": "Find the best online casinos according to our experts"
+    "subtitle": "Find the best online casinos according to our experts",
+    "badges": {
+      "topRated": "🏆 Top Rated",
+      "expertChoice": "💎 Expert Choice",
+      "verified": "🔥 Verified Reviews"
+    },
+    "sections": {
+      "topCasinos": "🏆 Top 5 Casinos",
+      "allCasinos": "🎲 All Casino Reviews"
+    },
+    "stats": {
+      "totalCasinos": "Total Casinos",
+      "avgRating": "Avg Rating",
+      "topRated": "Top Rated",
+      "highRtp": "High RTP"
+    },
+    "safety": {
+      "title": "Safe & Trusted Reviews",
+      "description": "All casinos are thoroughly tested by our experts for safety, fairness, and reliability.",
+      "licensed": "✅ Licensed",
+      "secured": "🔒 SSL Secured",
+      "fairPlay": "⚡ Fair Play",
+      "verified": "💯 Verified"
+    }
   },
   "CasinoReviewPage": {
     "backToCasinos": "Back to casinos",
@@ -47,7 +106,36 @@
   "SlotsPage": {
     "title": "Slots",
     "description": "Best online slot reviews, ratings and where to play with bonuses and free spins.",
-    "subtitle": "Discover the best slot games"
+    "subtitle": "Discover the best slot games",
+    "badges": {
+      "newReleases": "🆕 New Releases",
+      "popular": "🔥 Popular",
+      "freePlay": "🎰 Free Play"
+    },
+    "sections": {
+      "popularSlots": "🔥 Popular Slots",
+      "newReleases": "🆕 New Releases",
+      "allSlots": "🎲 All Slots"
+    },
+    "stats": {
+      "totalSlots": "Total Slots",
+      "avgRating": "Avg Rating",
+      "avgRtp": "Avg RTP",
+      "providers": "Providers"
+    },
+    "features": {
+      "title": "Premium Gaming Experience",
+      "description": "Enjoy the best online slots with high RTPs, exciting features, and fair gameplay.",
+      "freeSpins": "🎰 Free Spins",
+      "highRtp": "💰 High RTP",
+      "jackpots": "🏆 Jackpots",
+      "bonusRounds": "🎯 Bonus Rounds"
+    },
+    "labels": {
+      "mostPlayed": "Most Played",
+      "freshGames": "Fresh Games",
+      "gamesAvailable": "games available"
+    }
   },
   "SlotPage": {
     "backToSlots": "Back to slots",
@@ -84,6 +172,30 @@
     "slots": "Slots",
     "bonuses": "Bonuses",
     "news": "News"
+  },
+  "Rating": {
+    "excellent": "Excellent",
+    "great": "Great",
+    "good": "Good",
+    "fair": "Fair",
+    "poor": "Poor"
+  },
+  "Cards": {
+    "readReview": "Read Review",
+    "readMore": "Read More",
+    "getBonus": "Get Bonus",
+    "playNow": "Play Now",
+    "viewDetails": "View Details",
+    "bestCasino": "Best Casino",
+    "rtp": "RTP",
+    "payout": "Payout",
+    "games": "Games",
+    "welcomeBonus": "🎁 Welcome Bonus",
+    "review": "📋 Review",
+    "volatility": "Volatility",
+    "playFree": "🎰 Play Free",
+    "playReal": "💰 Play Real",
+    "readingTime": "3 min"
   },
   "BonusCard": {
     "types": {
@@ -124,6 +236,37 @@
     "description": "Best online casino bonuses: welcome packages, free spins, no deposit bonuses and cashback offers.",
     "noBonuses": "No bonuses found.",
     "allTypes": "All types",
+    "badges": {
+      "welcome": "🎁 Welcome Bonuses",
+      "noDeposit": "🆓 No Deposit",
+      "freeSpins": "🎰 Free Spins"
+    },
+    "sections": {
+      "welcomeBonuses": "🎁 Welcome Bonuses",
+      "noDepositBonuses": "🆓 No Deposit Bonuses",
+      "freeSpins": "🎰 Free Spins",
+      "otherBonuses": "🎲 Other Bonuses"
+    },
+    "stats": {
+      "totalBonuses": "Total Bonuses",
+      "welcome": "Welcome",
+      "noDeposit": "No Deposit",
+      "freeSpins": "Free Spins"
+    },
+    "labels": {
+      "bestValue": "Best Value",
+      "riskFree": "Risk Free",
+      "playFree": "Play Free",
+      "moreOffers": "more offers"
+    },
+    "terms": {
+      "title": "Important Bonus Terms",
+      "description": "Always read the terms and conditions. Wagering requirements and restrictions apply to all bonuses.",
+      "tcApply": "📋 T&C Apply",
+      "wagering": "🎯 Wagering",
+      "timeLimits": "⏰ Time Limits",
+      "ageRestriction": "🔞 18+ Only"
+    },
     "types": {
       "welcome": "Welcome",
       "deposit": "Deposit",

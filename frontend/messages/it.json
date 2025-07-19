@@ -2,7 +2,22 @@
   "NewsPage": {
     "title": "Notizie",
     "description": "Ultime notizie sui casinò e sul gioco d'azzardo, recensioni e aggiornamenti del settore.",
-    "noArticles": "Nessun articolo trovato."
+    "noArticles": "Nessun articolo trovato.",
+    "badges": {
+      "latest": "📰 Ultime Notizie",
+      "breaking": "🔥 Urgenti",
+      "expert": "💎 Analisi Esperta"
+    },
+    "sections": {
+      "featured": "🌟 Articoli in Evidenza",
+      "allNews": "📚 Tutte le Notizie"
+    },
+    "stats": {
+      "totalArticles": "Articoli Totali",
+      "featured": "In Evidenza",
+      "updates": "Aggiornamenti",
+      "expertContent": "Contenuto Esperto"
+    }
   },
   "ArticlePage": {
     "backToNews": "Torna alle notizie",
@@ -12,7 +27,28 @@
   "HeroSection": {
     "title": "La tua guida completa ai casinò online in Canada",
     "subtitle": "Recensiamo e classifichiamo i migliori casinò online per i giocatori canadesi. Trova i migliori bonus, giochi e molto altro.",
-    "ctaButton": "Vedi i migliori casinò"
+    "ctaButton": "Vedi i migliori casinò",
+    "badges": {
+      "casinoGuide": "#1 Guida Casinò",
+      "independent": "100% Indipendente", 
+      "yearsOnline": "10 Anni Online"
+    },
+    "stats": {
+      "casinosReviewed": "Casinò Recensiti",
+      "yearsExperience": "Anni di Esperienza",
+      "freeGames": "Giochi Gratuiti",
+      "bonusesFound": "Bonus Trovati"
+    },
+    "buttons": {
+      "findCasinos": "🎰 Trova I Migliori Casinò",
+      "claimBonuses": "💰 Richiedi Bonus"
+    },
+    "quickNav": {
+      "casinoReviews": "Recensioni Casinò",
+      "bonusOffers": "Offerte Bonus", 
+      "freeGames": "Giochi Gratuiti",
+      "slots": "Slot"
+    }
   },
   "TopCasinosSection": {
     "title": "I migliori casinò online",
@@ -32,7 +68,30 @@
   "CasinoReviewsPage": {
     "title": "Recensioni dei casinò",
     "description": "Recensioni complete dei migliori casinò online con bonus, valutazioni e analisi esperte.",
-    "subtitle": "Trova i migliori casinò online secondo i nostri esperti"
+    "subtitle": "Trova i migliori casinò online secondo i nostri esperti",
+    "badges": {
+      "topRated": "🏆 Top Rated",
+      "expertChoice": "💎 Scelta Esperta",
+      "verified": "🔥 Recensioni Verificate"
+    },
+    "sections": {
+      "topCasinos": "🏆 Top 5 Casinò",
+      "allCasinos": "🎲 Tutte le Recensioni"
+    },
+    "stats": {
+      "totalCasinos": "Casinò Totali",
+      "avgRating": "Rating Medio",
+      "topRated": "Top Rated",
+      "highRtp": "Alto RTP"
+    },
+    "safety": {
+      "title": "Recensioni Sicure e Affidabili",
+      "description": "Tutti i casinò sono testati accuratamente dai nostri esperti per sicurezza, correttezza e affidabilità.",
+      "licensed": "✅ Autorizzato",
+      "secured": "🔒 SSL Protetto",
+      "fairPlay": "⚡ Gioco Equo",
+      "verified": "💯 Verificato"
+    }
   },
   "CasinoReviewPage": {
     "backToCasinos": "Torna ai casinò",
@@ -47,7 +106,36 @@
   "SlotsPage": {
     "title": "Slot",
     "description": "Le migliori recensioni di slot online, valutazioni e dove giocare con bonus e giri gratuiti.",
-    "subtitle": "Scopri i migliori giochi di slot"
+    "subtitle": "Scopri i migliori giochi di slot",
+    "badges": {
+      "newReleases": "🆕 Nuove Uscite",
+      "popular": "🔥 Popolari",
+      "freePlay": "🎰 Gioco Gratuito"
+    },
+    "sections": {
+      "popularSlots": "🔥 Slot Popolari",
+      "newReleases": "🆕 Nuove Uscite",
+      "allSlots": "🎲 Tutte le Slot"
+    },
+    "stats": {
+      "totalSlots": "Slot Totali",
+      "avgRating": "Rating Medio",
+      "avgRtp": "RTP Medio",
+      "providers": "Provider"
+    },
+    "features": {
+      "title": "Esperienza di Gioco Premium",
+      "description": "Goditi le migliori slot online con alti RTP, funzioni entusiasmanti e gioco equo.",
+      "freeSpins": "🎰 Giri Gratuiti",
+      "highRtp": "💰 Alto RTP",
+      "jackpots": "🏆 Jackpot",
+      "bonusRounds": "🎯 Round Bonus"
+    },
+    "labels": {
+      "mostPlayed": "Più Giocate",
+      "freshGames": "Giochi Freschi",
+      "gamesAvailable": "giochi disponibili"
+    }
   },
   "SlotPage": {
     "backToSlots": "Torna alle slot",
@@ -84,6 +172,30 @@
     "slots": "Slot",
     "bonuses": "Bonus",
     "news": "Notizie"
+  },
+  "Rating": {
+    "excellent": "Eccellente",
+    "great": "Ottimo",
+    "good": "Buono",
+    "fair": "Discreto",
+    "poor": "Scarso"
+  },
+  "Cards": {
+    "readReview": "Leggi Recensione",
+    "readMore": "Leggi di Più",
+    "getBonus": "Ottieni Bonus",
+    "playNow": "Gioca Ora",
+    "viewDetails": "Vedi Dettagli",
+    "bestCasino": "Miglior Casinò",
+    "rtp": "RTP",
+    "payout": "Pagamento",
+    "games": "Giochi",
+    "welcomeBonus": "🎁 Bonus Benvenuto",
+    "review": "📋 Recensione",
+    "volatility": "Volatilità",
+    "playFree": "🎰 Gioca Gratis",
+    "playReal": "💰 Gioca Vero",
+    "readingTime": "3 min"
   },
   "BonusCard": {
     "types": {
@@ -124,6 +236,37 @@
     "description": "I migliori bonus dei casinò online: pacchetti di benvenuto, giri gratuiti, bonus senza deposito e offerte cashback.",
     "noBonuses": "Nessun bonus trovato.",
     "allTypes": "Tutti i tipi",
+    "badges": {
+      "welcome": "🎁 Bonus Benvenuto",
+      "noDeposit": "🆓 Senza Deposito",
+      "freeSpins": "🎰 Giri Gratuiti"
+    },
+    "sections": {
+      "welcomeBonuses": "🎁 Bonus Benvenuto",
+      "noDepositBonuses": "🆓 Bonus Senza Deposito",
+      "freeSpins": "🎰 Giri Gratuiti",
+      "otherBonuses": "🎲 Altri Bonus"
+    },
+    "stats": {
+      "totalBonuses": "Bonus Totali",
+      "welcome": "Benvenuto",
+      "noDeposit": "Senza Deposito",
+      "freeSpins": "Giri Gratuiti"
+    },
+    "labels": {
+      "bestValue": "Miglior Valore",
+      "riskFree": "Senza Rischi",
+      "playFree": "Gioca Gratis",
+      "moreOffers": "altre offerte"
+    },
+    "terms": {
+      "title": "Termini Bonus Importanti",
+      "description": "Leggi sempre i termini e condizioni. Requisiti di scommessa e restrizioni si applicano a tutti i bonus.",
+      "tcApply": "📋 T&C Applicabili",
+      "wagering": "🎯 Scommessa",
+      "timeLimits": "⏰ Limiti Temporali",
+      "ageRestriction": "🔞 Solo 18+"
+    },
     "types": {
       "welcome": "Benvenuto",
       "deposit": "Deposito",
