@@ -15,12 +15,40 @@
   --color-primary-800: #075985;
   --color-primary-900: #0c4a6e;
   
-  /* Casino theme colors */
+  /* Casino theme colors - расширенная палитра */
   --color-casino-red: #dc2626;
   --color-casino-gold: #f59e0b;
   --color-casino-green: #16a34a;
   --color-casino-purple: #9333ea;
   --color-casino-orange: #ea580c;
+  --color-casino-emerald: #10b981;
+  --color-casino-ruby: #ef4444;
+  --color-casino-royal: #6366f1;
+  --color-casino-premium: #8b5cf6;
+  --color-casino-platinum: #6b7280;
+  --color-casino-diamond: #e5e7eb;
+  
+  /* Casino градиенты */
+  --gradient-casino: linear-gradient(135deg, #dc2626 0%, #ea580c 100%);
+  --gradient-premium: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+  --gradient-gold: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+  --gradient-emerald: linear-gradient(135deg, #10b981 0%, #16a34a 100%);
+  --gradient-royal: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  --gradient-platinum: linear-gradient(135deg, #6b7280 0%, #9ca3af 100%);
+  
+  /* Rating colors */
+  --color-rating-excellent: #10b981;
+  --color-rating-great: #3b82f6;
+  --color-rating-good: #f59e0b;
+  --color-rating-fair: #ef4444;
+  --color-rating-poor: #6b7280;
+  
+  /* Status colors */
+  --color-status-featured: #8b5cf6;
+  --color-status-exclusive: #dc2626;
+  --color-status-new: #10b981;
+  --color-status-popular: #f59e0b;
+  --color-status-verified: #3b82f6;
   
   /* Gray colors */
   --color-gray-50: #f9fafb;

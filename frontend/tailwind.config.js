@@ -32,6 +32,21 @@ module.exports = {
           green: 'var(--color-casino-green)',
           purple: 'var(--color-casino-purple)',
           orange: 'var(--color-casino-orange)',
+          emerald: 'var(--color-casino-emerald)',
+          ruby: 'var(--color-casino-ruby)',
+          royal: 'var(--color-casino-royal)',
+          premium: 'var(--color-casino-premium)',
+          platinum: 'var(--color-casino-platinum)',
+          diamond: 'var(--color-casino-diamond)',
+        },
+      },
+      animation: {
+        'shimmer': 'shimmer 2s infinite',
+      },
+      keyframes: {
+        shimmer: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
         },
       },
     },

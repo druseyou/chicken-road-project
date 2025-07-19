@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import { Link } from '@/i18n/navigation';
 import { Metadata } from 'next';
 import { getBonuses } from '@/services/strapi';
 import { getCanonicalUrl, getCurrentUrl, getAlternateUrls } from '@/utils/canonical';
@@ -110,7 +111,7 @@ async function BonusTypeFilter({ currentType }: { currentType?: string }) {
   return (
     <div className="mb-8">
       <div className="flex flex-wrap gap-2">
-        <a
+        <Link
           href="/bonuses"
           className={`px-4 py-2 rounded-lg font-medium transition-colors ${
             !currentType 
@@ -119,7 +120,7 @@ async function BonusTypeFilter({ currentType }: { currentType?: string }) {
           }`}
         >
           {t('allTypes')}
-        </a>
+        </Link>
         
         {bonusTypes.map((type) => (
           <a

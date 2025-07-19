@@ -1,5 +1,5 @@
 import { Casino } from '@/types';
-import CasinoCard from '@/components/cards/CasinoCard';
+import CasinoCard from '@/components/cards/CasinoCard.v2';
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 

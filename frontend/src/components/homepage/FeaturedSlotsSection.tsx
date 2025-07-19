@@ -1,5 +1,5 @@
 import { Slot } from '@/types';
-import SlotCard from '../cards/SlotCard';
+import SlotCard from '../cards/SlotCard.v2';
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 

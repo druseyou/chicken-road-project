@@ -144,7 +144,7 @@ export default async function CasinoReviewPage({ params }: CasinoReviewPageProps
               </div>
               
               <div className="text-gray-600">
-                <strong>{t('license')}:</strong> {license?.name || 'N/A'}
+                <strong>{t('license')}:</strong> {license || 'N/A'}
               </div>
             </div>
             

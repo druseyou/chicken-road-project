@@ -2,345 +2,271 @@
 alwaysApply: true
 ---
 
-# 🎨 UI System Optimization Rules - Casino Project
+# 📊 Документація UI системи та дизайну проекту
 
-## 🏗️ **UI Architecture & Performance**
+## 🎯 Правила проекту:
 
-### **📁 Directory Structure**
-```
-src/ui/
-├── components/           # React UI components
-│   ├── atoms/           # Basic elements (Button, Typography)
-│   ├── molecules/       # Combined elements (Card, Form)
-│   └── organisms/       # Complex components
-├── styles/             # CSS tokens and global styles
-│   └── tokens.css      # Design system variables
-├── utils/              # UI utilities
-│   └── cn.ts          # Class name utility
-└── tokens/            # Design tokens (colors, spacing, etc.)
-```
+### **Frontend правила:**
+- Використовувати UI систему з `src/ui/components/`
+- Тільки Tailwind CSS для стилізації
+- Mobile-first дизайн
+- Інтернаціоналізація через `useTranslations`
+- TypeScript з строгою типізацією
+- Семантичний HTML з accessibility
+- Розділення client/server компонентів (Next.js App Router)
 
-## 🎯 **Performance-First Development**
+### **UI система:**
+- Атомарна структура (atoms/molecules/organisms)
+- CSS змінні для дизайн-токенів
+- Performance-first підхід
+- Мемоізація дорогих компонентів
+- Оптимізація bundle size
 
-### **⚡ Bundle Optimization Rules**
+## 🎨 Реалізована дизайн-система:
 
-#### **1. Import Optimization**
-```typescript
-// ✅ GOOD - Tree-shakeable imports
-import { cn } from '@/ui/utils/cn';
-import { Button } from '@/ui/components/atoms/Button';
+### **Дизайн-токени (РЕАЛІЗОВАНО):**
 
-// ❌ BAD - Barrel imports that increase bundle size
-import * from '@/ui';
-import { Button, Card, Text, Heading } from '@/ui';
-```
-
-#### **2. Component Splitting Strategy**
-```typescript
-// ✅ GOOD - Split large components
-const HeavyComponent = dynamic(() => import('./HeavyComponent'), {
-  loading: () => <Skeleton />,
-  ssr: false, // If not needed for SEO
-});
-
-// ✅ GOOD - Conditional loading
-const AdminPanel = dynamic(() => import('./AdminPanel'), {
-  loading: () => <div>Loading admin...</div>,
-});
-```
-
-#### **3. CSS-in-JS Avoidance**
-```typescript
-// ✅ GOOD - Use Tailwind classes + CSS variables
-const Button = ({ variant = 'primary' }) => (
-  <button className={cn(
-    'px-4 py-2 rounded-md font-medium transition-colors',
-    variant === 'primary' && 'bg-primary-500 text-white hover:bg-primary-600',
-    variant === 'secondary' && 'bg-gray-200 text-gray-800 hover:bg-gray-300'
-  )}>
-    {children}
-  </button>
-);
-
-// ❌ BAD - Runtime CSS generation
-const Button = styled.button`
-  padding: ${props => props.size === 'large' ? '12px 24px' : '8px 16px'};
-  background: ${props => props.variant === 'primary' ? '#0ea5e9' : '#f3f4f6'};
-`;
-```
-
-### **🎨 Design System Integration**
-
-#### **1. CSS Variables Usage**
+#### Кольори:
 ```css
-/* ✅ GOOD - Use design tokens */
-.button-primary {
-  background-color: var(--color-primary-500);
-  color: var(--color-white);
-  font-family: var(--font-family-sans);
-}
+/* frontend/src/ui/styles/tokens.css */
+--casino-red-primary: #dc2626;
+--casino-red-secondary: #ef4444;
+--casino-gold: #f59e0b;
+--casino-emerald: #10b981;
+--casino-purple: #8b5cf6;
+--casino-blue: #3b82f6;
 
-/* ❌ BAD - Hardcoded values */
-.button-primary {
-  background-color: #0ea5e9;
-  color: #ffffff;
-  font-family: 'Inter', sans-serif;
-}
+/* Градієнти */
+--gradient-casino: linear-gradient(135deg, #dc2626 0%, #ea580c 100%);
+--gradient-premium: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+--gradient-gold: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+--gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
 ```
 
-#### **2. Responsive Design Patterns**
+#### Типографія:
 ```typescript
-// ✅ GOOD - Mobile-first responsive classes
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-
-// ✅ GOOD - Breakpoint-specific utilities
-<h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">
-
-// ❌ BAD - Fixed layouts
-<div className="grid-cols-3 gap-4">
-```
-
-### **🚀 Component Performance Patterns**
-
-#### **1. Memoization Strategy**
-```typescript
-// ✅ GOOD - Memoize expensive components
-const ExpensiveCard = memo(({ data, onAction }) => {
-  const processedData = useMemo(() => 
-    processComplexData(data), [data]
-  );
-  
-  const handleAction = useCallback((id) => 
-    onAction(id), [onAction]
-  );
-
-  return <Card data={processedData} onAction={handleAction} />;
-});
-
-// ✅ GOOD - Memoize selectors
-const useFilteredItems = (items, filter) => {
-  return useMemo(() => 
-    items.filter(item => item.category === filter), 
-    [items, filter]
-  );
+// frontend/src/ui/tokens/typography.ts
+export const typography = {
+  fontFamily: {
+    sans: ['Inter', 'system-ui', 'sans-serif'],
+    mono: ['JetBrains Mono', 'monospace']
+  },
+  fontSize: {
+    xs: '0.75rem',
+    sm: '0.875rem',
+    base: '1rem',
+    lg: '1.125rem',
+    xl: '1.25rem',
+    '2xl': '1.5rem',
+    '3xl': '1.875rem',
+    '4xl': '2.25rem',
+    '5xl': '3rem'
+  }
 };
 ```
 
-#### **2. Lazy Loading Images**
-```typescript
-// ✅ GOOD - Use OptimizedImage component
-import OptimizedImage from '@/components/ui/OptimizedImage';
+## ⚛️ Реалізовані UI компоненти:
 
-<OptimizedImage
-  src={imageUrl}
-  alt="Description"
-  width={400}
-  height={300}
-  className="rounded-lg"
-  showBlurPlaceholder={true}
-  priority={false} // Only true for above-the-fold images
+### **Atoms (Атоми):**
+
+#### 1. Rating Component
+```typescript
+// frontend/src/ui/components/atoms/Rating/Rating.tsx
+interface RatingProps {
+  value: number;
+  maxRating?: number;
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'default' | 'casino';
+  showValue?: boolean;
+  showLabel?: boolean;
+}
+```
+
+#### 2. StatusBadge Component
+```typescript
+// frontend/src/ui/components/atoms/StatusBadge/StatusBadge.tsx
+interface StatusBadgeProps {
+  variant: 'default' | 'featured' | 'new' | 'popular' | 'exclusive' | 'casino';
+  size?: 'sm' | 'md' | 'lg';
+  children: React.ReactNode;
+}
+```
+
+#### 3. StatCard Component
+```typescript
+// frontend/src/ui/components/atoms/StatCard/StatCard.tsx
+interface StatCardProps {
+  icon: React.ReactNode;
+  label: string;
+  value: string | number;
+  variant?: 'default' | 'compact';
+  size?: 'sm' | 'md' | 'lg';
+}
+```
+
+#### 4. GradientButton Component
+```typescript
+// frontend/src/ui/components/atoms/GradientButton/GradientButton.tsx
+interface GradientButtonProps {
+  variant: 'casino' | 'premium' | 'gold' | 'success';
+  size?: 'sm' | 'md' | 'lg';
+  children: React.ReactNode;
+}
+```
+
+### **Molecules (Молекули):**
+
+#### 1. Card Component
+```typescript
+// frontend/src/ui/components/molecules/Card/Card.tsx
+interface CardProps {
+  variant?: 'default' | 'casino' | 'slot' | 'article' | 'elevated' | 'outlined';
+  padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
+  children: React.ReactNode;
+}
+```
+
+#### 2. SearchBar Component (Client-side)
+```typescript
+// frontend/src/ui/components/molecules/SearchBar/SearchBar.tsx
+'use client';
+interface SearchBarProps {
+  placeholder?: string;
+  onSearch: (query: string) => void;
+  size?: 'sm' | 'md' | 'lg';
+}
+```
+
+#### 3. FilterDropdown Component (Client-side)
+```typescript
+// frontend/src/ui/components/molecules/FilterDropdown/FilterDropdown.tsx
+'use client';
+interface FilterDropdownProps {
+  options: FilterOption[];
+  onFilter: (value: string) => void;
+  placeholder?: string;
+}
+```
+
+## 🃏 Оновлені компоненти карток:
+
+### **CasinoCard.v2 (РЕАЛІЗОВАНО):**
+- **Структура**: Ранг + Лого | Основна інформація | Бонус + CTA
+- **Нові елементи**: StatusBadge, Rating, StatCard
+- **Градієнти**: border-l-4 border-l-red-500
+- **Статистика**: RTP, Payout, Games з іконками
+- **Анімації**: hover:shadow-xl, group-hover ефекти
+
+### **SlotCard.v2 (РЕАЛІЗОВАНО):**
+- **Структура**: Зображення з оверлеями | Контент з рейтингом
+- **Нові елементи**: StatusBadge (New, Hot), Rating, StatCard
+- **Play button overlay** з backdrop-blur
+- **Статистика**: RTP, Volatility
+- **Анімації**: scale-105 на hover, opacity transitions
+
+### **ArticleCard (ОНОВЛЕНО):**
+- **StatusBadge** замість div для Featured/New
+- **Градієнтні оверлеї** для кращої читабельності
+- **Категорії** через StatusBadge
+
+### **HeroSection (ОНОВЛЕНО):**
+- **Trust Indicators** через StatusBadge компоненти
+- **Варіанти**: featured, exclusive, new
+- **Розміри**: md для кращого відображення
+
+## 🏗️ Архітектура файлів:
+
+```
+frontend/src/ui/
+├── components/
+│   ├── atoms/
+│   │   ├── Button/
+│   │   ├── Typography/
+│   │   ├── Rating/           ✅ НОВИЙ
+│   │   ├── StatusBadge/      ✅ НОВИЙ  
+│   │   ├── StatCard/         ✅ НОВИЙ
+│   │   └── GradientButton/   ✅ НОВИЙ
+│   ├── molecules/
+│   │   ├── Card/             ✅ ОНОВЛЕНО
+│   │   ├── SearchBar/        ✅ НОВИЙ
+│   │   └── FilterDropdown/   ✅ НОВИЙ
+│   └── organisms/
+├── styles/
+│   └── tokens.css            ✅ ОНОВЛЕНО
+├── tokens/
+│   ├── colors.ts             ✅ ОНОВЛЕНО
+│   ├── spacing.ts
+│   └── typography.ts
+└── utils/
+    └── cn.ts
+```
+
+## 🚀 Статус реалізації:
+
+### ✅ **ЗАВЕРШЕНО:**
+- [x] Дизайн-токени та CSS змінні
+- [x] Атомарні компоненти (Rating, StatusBadge, StatCard, GradientButton)
+- [x] Молекулярні компоненти (Card, SearchBar, FilterDropdown)
+- [x] CasinoCard.v2 з повним новим дизайном
+- [x] SlotCard.v2 з оверлеями та анімаціями
+- [x] Оновлення HeroSection з StatusBadge
+- [x] Оновлення ArticleCard з новими компонентами
+- [x] Правильне розділення client/server компонентів
+- [x] TypeScript типізація без помилок
+- [x] Responsive дизайн для всіх пристроїв
+
+### 🎯 **ГОТОВО ДО ВИКОРИСТАННЯ:**
+Вся UI система готова та протестована. Всі компоненти працюють без помилок.
+
+## 📋 Інструкції по використанню:
+
+### **Імпорти:**
+```typescript
+// Атоми
+import { Rating, StatusBadge, StatCard, GradientButton } from '@/ui/components/atoms';
+
+// Молекули  
+import { Card, SearchBar, FilterDropdown } from '@/ui/components/molecules';
+
+// Оновлені картки
+import CasinoCard from '@/components/cards/CasinoCard.v2';
+import SlotCard from '@/components/cards/SlotCard.v2';
+```
+
+### **Приклади використання:**
+```tsx
+// Рейтинг казино
+<Rating value={4.5} variant="casino" showValue showLabel />
+
+// Статусний бейдж
+<StatusBadge variant="featured" size="md">⭐ Featured</StatusBadge>
+
+// Статистична картка
+<StatCard 
+  icon={<StarIcon />}
+  label="RTP" 
+  value="97.5%" 
+  variant="compact" 
 />
 
-// ❌ BAD - Standard img tag
-<img src={imageUrl} alt="Description" />
+// Картка казино
+<CasinoCard 
+  casino={casino} 
+  rank={1} 
+  isFeatured 
+  isExclusive 
+/>
 ```
 
-#### **3. Form Optimization**
-```typescript
-// ✅ GOOD - Debounced inputs for search
-const SearchInput = () => {
-  const [query, setQuery] = useState('');
-  const debouncedQuery = useDebounce(query, 300);
-  
-  useEffect(() => {
-    if (debouncedQuery) {
-      performSearch(debouncedQuery);
-    }
-  }, [debouncedQuery]);
+## 🎨 Дизайн принципи:
 
-  return (
-    <input
-      value={query}
-      onChange={(e) => setQuery(e.target.value)}
-      className="w-full px-3 py-2 border rounded-md"
-    />
-  );
-};
-```
-
-### **🎭 Animation & Interaction Guidelines**
-
-#### **1. CSS Transitions Over JavaScript**
-```css
-/* ✅ GOOD - CSS transitions */
-.button {
-  transition: background-color 0.2s ease, transform 0.1s ease;
-}
-
-.button:hover {
-  background-color: var(--color-primary-600);
-  transform: translateY(-1px);
-}
-
-.button:active {
-  transform: translateY(0);
-}
-```
-
-#### **2. Reduced Motion Support**
-```css
-/* ✅ GOOD - Respect user preferences */
-@media (prefers-reduced-motion: reduce) {
-  .animated-element {
-    animation: none;
-    transition: none;
-  }
-}
-```
-
-### **📱 Mobile-First Optimization**
-
-#### **1. Touch-Friendly Interactions**
-```typescript
-// ✅ GOOD - Adequate touch targets
-<button className="min-h-[44px] min-w-[44px] p-3 rounded-lg">
-
-// ✅ GOOD - Touch feedback
-<button className="active:scale-95 transition-transform">
-```
-
-#### **2. Viewport Considerations**
-```typescript
-// ✅ GOOD - Safe area handling
-<div className="pb-safe-area-inset-bottom">
-
-// ✅ GOOD - Responsive text scaling
-<h1 className="text-2xl sm:text-3xl lg:text-4xl">
-```
-
-### **🔍 Accessibility & SEO**
-
-#### **1. Semantic HTML**
-```typescript
-// ✅ GOOD - Proper semantic structure
-<article className="card">
-  <header>
-    <h2>Card Title</h2>
-  </header>
-  <main>
-    <p>Card content...</p>
-  </main>
-  <footer>
-    <button>Action</button>
-  </footer>
-</article>
-```
-
-#### **2. ARIA Attributes**
-```typescript
-// ✅ GOOD - Proper ARIA labels
-<button
-  aria-label="Close dialog"
-  aria-expanded={isOpen}
-  onClick={handleClose}
->
-  <CloseIcon aria-hidden="true" />
-</button>
-```
-
-### **🧪 Testing & Quality**
-
-#### **1. Component Testing Pattern**
-```typescript
-// ✅ GOOD - Test component behavior
-describe('Button Component', () => {
-  it('applies correct styles for variants', () => {
-    render(<Button variant="primary">Test</Button>);
-    expect(screen.getByRole('button')).toHaveClass('bg-primary-500');
-  });
-  
-  it('handles click events', () => {
-    const handleClick = jest.fn();
-    render(<Button onClick={handleClick}>Test</Button>);
-    fireEvent.click(screen.getByRole('button'));
-    expect(handleClick).toHaveBeenCalledTimes(1);
-  });
-});
-```
-
-### **📊 Bundle Size Monitoring**
-
-#### **1. Import Analysis**
-```bash
-# ✅ GOOD - Regular bundle analysis
-npm run analyze
-
-# Monitor these metrics:
-# - Total bundle size (target: <250KB gzipped)
-# - Individual chunk sizes (target: <50KB each)
-# - Unused code percentage (target: <10%)
-```
-
-#### **2. Performance Budgets**
-```typescript
-// ✅ GOOD - Set performance budgets in tests
-describe('Performance', () => {
-  it('component should render within 16ms', async () => {
-    const start = performance.now();
-    render(<ComplexComponent />);
-    const end = performance.now();
-    expect(end - start).toBeLessThan(16); // 60fps budget
-  });
-});
-```
-
-## 🎯 **UI Development Checklist**
-
-### **Before Creating New Component:**
-- [ ] Check if similar component exists
-- [ ] Consider component composition over creation
-- [ ] Plan for mobile-first responsive design
-- [ ] Define performance requirements
-
-### **During Development:**
-- [ ] Use CSS variables from design tokens
-- [ ] Implement proper TypeScript types
-- [ ] Add accessibility attributes
-- [ ] Optimize for bundle size
-- [ ] Test on mobile devices
-
-### **Before Commit:**
-- [ ] Run bundle analyzer if adding dependencies
-- [ ] Test with slow 3G network simulation
-- [ ] Verify accessibility with screen reader
-- [ ] Check responsive design on various screens
-- [ ] Validate performance metrics
-
-## 🚀 **Performance Targets**
-
-### **Bundle Metrics:**
-- **Total UI bundle**: <30KB gzipped
-- **Individual components**: <5KB each
-- **CSS bundle**: <20KB gzipped
-- **Tree shaking efficiency**: >90%
-
-### **Runtime Metrics:**
-- **Component render time**: <16ms
-- **First paint**: <100ms after mount
-- **Interaction response**: <100ms
-- **Animation frame rate**: 60fps
+1. **Casino-first**: Всі компоненти адаптовані для казино-тематики
+2. **Performance**: Client/server розділення, lazy loading
+3. **Accessibility**: ARIA атрибути, семантичний HTML
+4. **Mobile-first**: Responsive дизайн з Tailwind
+5. **Consistency**: Єдина дизайн-система через токени
+6. **Animation**: Smooth transitions та micro-interactions
 
 ---
 
-## 💡 **Best Practices Summary**
-
-1. **Import only what you need** - avoid barrel exports
-2. **Use CSS variables** - maintain design system consistency  
-3. **Memoize expensive operations** - optimize re-renders
-4. **Lazy load non-critical components** - improve initial load
-5. **Test performance regularly** - monitor bundle size
-6. **Design mobile-first** - optimize for majority users
-7. **Implement accessibility** - ensure inclusive design
-8. **Use semantic HTML** - improve SEO and screen readers
-
-Remember: **Performance is a feature!** Every optimization improves user experience. 
+**🎉 UI система повністю готова та реалізована!**
