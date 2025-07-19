@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -12,13 +12,14 @@ import { cn } from '@/ui/utils/cn';
 import { Bonus } from '@/types';
 
 interface BonusPageProps {
-  params: { locale: string; slug: string };
+  params: Promise<{ locale: string; slug: string }>;
 }
 
 export async function generateMetadata({ 
-  params: { locale, slug } 
+  params 
 }: BonusPageProps): Promise<Metadata> {
-  const bonus = await getBonusBySlug(slug);
+  const { locale, slug } = await params;
+  const bonus = await getBonusBySlug(slug, locale);
   
   if (!bonus) {
     return {
@@ -44,9 +45,10 @@ const bonusTypeColors = {
   'reload': 'bg-gradient-to-r from-gray-500 to-slate-500',
 } as const;
 
-export default async function BonusPage({ params: { locale, slug } }: BonusPageProps) {
-  const t = useTranslations('BonusPage');
-  const bonus = await getBonusBySlug(slug);
+export default async function BonusPage({ params }: BonusPageProps) {
+  const { locale, slug } = await params;
+  const t = await getTranslations('BonusPage');
+  const bonus = await getBonusBySlug(slug, locale);
 
   if (!bonus) {
     notFound();

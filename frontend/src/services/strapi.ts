@@ -16,16 +16,21 @@ import {
 } from '@/types';
 
 /**
- * Generic function to fetch data from Strapi with error handling
+ * Generic function to fetch data from Strapi with error handling and locale support
  */
 async function fetchStrapiData<T>(
   path: string, 
   params: Record<string, any> = {},
-  entityName: string
+  entityName: string,
+  locale?: string
 ): Promise<T[]> {
   try {
     console.log(`[${entityName}] Fetching from: ${path}`);
-    const response: APIResponse<T[]> = await fetchAPI(path, params);
+    
+    // Add locale parameter if provided
+    const finalParams = locale ? { ...params, locale } : params;
+    
+    const response: APIResponse<T[]> = await fetchAPI(path, finalParams);
     
     if (response.error || !response.data) {
       console.warn(`[${entityName}] No data found or API error`);
@@ -41,19 +46,26 @@ async function fetchStrapiData<T>(
 }
 
 /**
- * Generic function to fetch single item by slug
+ * Generic function to fetch single item by slug with locale support
  */
 async function fetchStrapiItem<T>(
   path: string,
   slug: string,
   populate: string[] = [],
-  entityName: string
+  entityName: string,
+  locale?: string
 ): Promise<T | null> {
   try {
-    const params = {
+    const params: Record<string, any> = {
       populate,
       filters: { slug: { $eq: slug } }
     };
+    
+    // Add locale parameter if provided
+    if (locale) {
+      params.locale = locale;
+    }
+    
     const response: APIResponse<T[]> = await fetchAPI(path, params);
     
     if (response.error || !response.data || response.data.length === 0) {
@@ -82,18 +94,19 @@ export async function getArticles(locale: string): Promise<Article[]> {
     sort: 'createdAt:desc'
   };
   
-  return fetchStrapiData<Article>('/api/articles', params, 'Articles');
+  return fetchStrapiData<Article>('/api/articles', params, 'Articles', locale);
 }
 
 /**
  * Fetch a single article by slug
  */
-export async function getArticleBySlug(slug: string): Promise<Article | null> {
+export async function getArticleBySlug(slug: string, locale: string): Promise<Article | null> {
   return fetchStrapiItem<Article>(
     '/api/articles',
     slug,
     ['preview_image', 'category', 'comments'],
-    'Article'
+    'Article',
+    locale
   );
 }
 
@@ -109,7 +122,7 @@ export async function getFeaturedArticles(locale: string, limit: number = 6): Pr
     sort: 'createdAt:desc'
   };
   
-  return fetchStrapiData<Article>('/api/articles', params, 'Featured Articles');
+  return fetchStrapiData<Article>('/api/articles', params, 'Featured Articles', locale);
 }
 
 // ===================== CASINOS =====================
@@ -126,18 +139,19 @@ export async function getCasinos(locale: string): Promise<Casino[]> {
     sort: 'rating:desc'
   };
   
-  return fetchStrapiData<Casino>('/api/casino-reviews', params, 'Casinos');
+  return fetchStrapiData<Casino>('/api/casino-reviews', params, 'Casinos', locale);
 }
 
 /**
  * Fetch a single casino review by slug
  */
-export async function getCasinoBySlug(slug: string): Promise<Casino | null> {
+export async function getCasinoBySlug(slug: string, locale: string): Promise<Casino | null> {
   return fetchStrapiItem<Casino>(
     '/api/casino-reviews',
     slug,
     ['logo', 'bonuses', 'comments'],
-    'Casino'
+    'Casino',
+    locale
   );
 }
 
@@ -155,18 +169,19 @@ export async function getSlots(locale: string): Promise<Slot[]> {
     sort: 'rating:desc'
   };
   
-  return fetchStrapiData<Slot>('/api/slots', params, 'Slots');
+  return fetchStrapiData<Slot>('/api/slots', params, 'Slots', locale);
 }
 
 /**
  * Fetch a single slot by slug
  */
-export async function getSlotBySlug(slug: string): Promise<Slot | null> {
+export async function getSlotBySlug(slug: string, locale: string): Promise<Slot | null> {
   return fetchStrapiItem<Slot>(
     '/api/slots',
     slug,
     ['cover_image', 'category', 'comments'],
-    'Slot'
+    'Slot',
+    locale
   );
 }
 
@@ -182,7 +197,7 @@ export async function getPopularSlots(locale: string, limit: number = 6): Promis
     sort: 'rating:desc'
   };
   
-  return fetchStrapiData<Slot>('/api/slots', params, 'Popular Slots');
+  return fetchStrapiData<Slot>('/api/slots', params, 'Popular Slots', locale);
 }
 
 // ===================== CATEGORIES =====================
@@ -190,20 +205,20 @@ export async function getPopularSlots(locale: string, limit: number = 6): Promis
 /**
  * Fetch all categories
  */
-export async function getCategories(): Promise<Category[]> {
+export async function getCategories(locale: string): Promise<Category[]> {
   const params = {
     populate: ['icon'],
     fields: ['name', 'slug', 'description', 'color', 'is_featured', 'sort_order'],
     sort: 'sort_order:asc,name:asc'
   };
   
-  return fetchStrapiData<Category>('/api/categories', params, 'Categories');
+  return fetchStrapiData<Category>('/api/categories', params, 'Categories', locale);
 }
 
 /**
  * Fetch featured categories
  */
-export async function getFeaturedCategories(limit: number = 6): Promise<Category[]> {
+export async function getFeaturedCategories(locale: string, limit: number = 6): Promise<Category[]> {
   const params = {
     populate: ['icon'],
     filters: { is_featured: true },
@@ -212,27 +227,28 @@ export async function getFeaturedCategories(limit: number = 6): Promise<Category
     sort: 'sort_order:asc'
   };
   
-  return fetchStrapiData<Category>('/api/categories/featured', params, 'Featured Categories');
+  return fetchStrapiData<Category>('/api/categories/featured', params, 'Featured Categories', locale);
 }
 
 /**
  * Fetch category by slug
  */
-export async function getCategoryBySlug(slug: string): Promise<Category | null> {
+export async function getCategoryBySlug(slug: string, locale: string): Promise<Category | null> {
   return fetchStrapiItem<Category>(
     '/api/categories',
     slug,
     ['icon', 'articles', 'slots'],
-    'Category'
+    'Category',
+    locale
   );
 }
 
 /**
  * Fetch category statistics
  */
-export async function getCategoryStats(id: number): Promise<CategoryStats | null> {
+export async function getCategoryStats(id: number, locale: string): Promise<CategoryStats | null> {
   try {
-    const response: APIResponse<CategoryStats> = await fetchAPI(`/api/categories/${id}/stats`);
+         const response: APIResponse<CategoryStats> = await fetchAPI(`/api/categories/${id}/stats`, { locale });
     return response.data;
   } catch (error) {
     console.error('Error fetching category stats:', error);
@@ -243,9 +259,9 @@ export async function getCategoryStats(id: number): Promise<CategoryStats | null
 // ===================== BONUSES =====================
 
 /**
- * Fetch all bonuses
+ * Fetch bonuses with optional filters and locale
  */
-export async function getBonuses(filters: BonusFilters = {}): Promise<Bonus[]> {
+export async function getBonuses(filters: BonusFilters = {}, locale: string): Promise<Bonus[]> {
   const params: Record<string, any> = {
     populate: ['casino_review.logo'],
     fields: ['name', 'slug', 'bonus_type', 'bonus_amount', 'promo_code', 'valid_until'],
@@ -265,25 +281,26 @@ export async function getBonuses(filters: BonusFilters = {}): Promise<Bonus[]> {
     };
   }
   
-  return fetchStrapiData<Bonus>('/api/bonuses', params, 'Bonuses');
+  return fetchStrapiData<Bonus>('/api/bonuses', params, 'Bonuses', locale);
 }
 
 /**
  * Fetch bonus by slug
  */
-export async function getBonusBySlug(slug: string): Promise<Bonus | null> {
+export async function getBonusBySlug(slug: string, locale: string): Promise<Bonus | null> {
   return fetchStrapiItem<Bonus>(
     '/api/bonuses',
     slug,
     ['casino_review.logo'],
-    'Bonus'
+    'Bonus',
+    locale
   );
 }
 
 /**
  * Fetch bonuses by type
  */
-export async function getBonusesByType(type: string, limit: number = 10): Promise<Bonus[]> {
+export async function getBonusesByType(type: string, limit: number = 10, locale: string): Promise<Bonus[]> {
   const params = {
     populate: ['casino_review.logo'],
     fields: ['name', 'slug', 'bonus_amount', 'promo_code', 'valid_until'],
@@ -291,33 +308,33 @@ export async function getBonusesByType(type: string, limit: number = 10): Promis
     sort: 'createdAt:desc'
   };
   
-  return fetchStrapiData<Bonus>(`/api/bonuses/type/${type}`, params, `${type} Bonuses`);
+  return fetchStrapiData<Bonus>(`/api/bonuses/type/${type}`, params, `${type} Bonuses`, locale);
 }
 
 /**
  * Fetch featured bonuses
  */
-export async function getFeaturedBonuses(limit: number = 6): Promise<Bonus[]> {
+export async function getFeaturedBonuses(locale: string, limit: number = 6): Promise<Bonus[]> {
   const params = {
     populate: ['casino_review.logo'],
     fields: ['name', 'slug', 'bonus_amount', 'promo_code'],
     'pagination[limit]': limit
   };
   
-  return fetchStrapiData<Bonus>('/api/bonuses/featured', params, 'Featured Bonuses');
+  return fetchStrapiData<Bonus>('/api/bonuses/featured', params, 'Featured Bonuses', locale);
 }
 
 /**
  * Fetch bonuses for specific casino
  */
-export async function getBonusesByCasino(casinoId: number): Promise<Bonus[]> {
+export async function getBonusesByCasino(casinoId: number, locale: string): Promise<Bonus[]> {
   const params = {
     populate: ['casino_review'],
     fields: ['name', 'slug', 'bonus_type', 'bonus_amount', 'promo_code', 'valid_until'],
     sort: 'createdAt:desc'
   };
   
-  return fetchStrapiData<Bonus>(`/api/bonuses/casino/${casinoId}`, params, 'Casino Bonuses');
+  return fetchStrapiData<Bonus>(`/api/bonuses/casino/${casinoId}`, params, 'Casino Bonuses', locale);
 }
 
 // ===================== COMMENTS =====================
@@ -325,7 +342,7 @@ export async function getBonusesByCasino(casinoId: number): Promise<Bonus[]> {
 /**
  * Fetch comments with filters
  */
-export async function getComments(filters: CommentFilters = {}): Promise<Comment[]> {
+export async function getComments(filters: CommentFilters = {}, locale: string): Promise<Comment[]> {
   const params: Record<string, any> = {
     populate: ['casino_review', 'article', 'slot'],
     fields: ['text', 'author_name', 'rating', 'createdAt'],
@@ -350,13 +367,13 @@ export async function getComments(filters: CommentFilters = {}): Promise<Comment
     params.filters = { ...params.filters, rating: { $gte: filters.rating } };
   }
   
-  return fetchStrapiData<Comment>('/api/comments', params, 'Comments');
+  return fetchStrapiData<Comment>('/api/comments', params, 'Comments', locale);
 }
 
 /**
  * Fetch comments for specific casino
  */
-export async function getCommentsByCasino(casinoId: number, limit: number = 10): Promise<Comment[]> {
+export async function getCommentsByCasino(casinoId: number, limit: number = 10, locale: string): Promise<Comment[]> {
   const params = {
     populate: ['casino_review'],
     fields: ['text', 'author_name', 'rating', 'createdAt'],
@@ -364,13 +381,13 @@ export async function getCommentsByCasino(casinoId: number, limit: number = 10):
     sort: 'createdAt:desc'
   };
   
-  return fetchStrapiData<Comment>(`/api/comments/casino/${casinoId}`, params, 'Casino Comments');
+  return fetchStrapiData<Comment>(`/api/comments/casino/${casinoId}`, params, 'Casino Comments', locale);
 }
 
 /**
  * Fetch comments for specific article
  */
-export async function getCommentsByArticle(articleId: number, limit: number = 10): Promise<Comment[]> {
+export async function getCommentsByArticle(articleId: number, limit: number = 10, locale: string): Promise<Comment[]> {
   const params = {
     populate: ['article'],
     fields: ['text', 'author_name', 'rating', 'createdAt'],
@@ -378,13 +395,13 @@ export async function getCommentsByArticle(articleId: number, limit: number = 10
     sort: 'createdAt:desc'
   };
   
-  return fetchStrapiData<Comment>(`/api/comments/article/${articleId}`, params, 'Article Comments');
+  return fetchStrapiData<Comment>(`/api/comments/article/${articleId}`, params, 'Article Comments', locale);
 }
 
 /**
  * Fetch comments for specific slot
  */
-export async function getCommentsBySlot(slotId: number, limit: number = 10): Promise<Comment[]> {
+export async function getCommentsBySlot(slotId: number, limit: number = 10, locale: string): Promise<Comment[]> {
   const params = {
     populate: ['slot'],
     fields: ['text', 'author_name', 'rating', 'createdAt'],
@@ -392,18 +409,15 @@ export async function getCommentsBySlot(slotId: number, limit: number = 10): Pro
     sort: 'createdAt:desc'
   };
   
-  return fetchStrapiData<Comment>(`/api/comments/slot/${slotId}`, params, 'Slot Comments');
+  return fetchStrapiData<Comment>(`/api/comments/slot/${slotId}`, params, 'Slot Comments', locale);
 }
 
 /**
  * Create new comment
  */
-export async function createComment(commentData: CommentForm): Promise<Comment | null> {
+export async function createComment(commentData: CommentForm, locale: string): Promise<Comment | null> {
   try {
-    const response: APIResponse<Comment> = await fetchAPI('/api/comments', {}, {
-      method: 'POST',
-      body: JSON.stringify({ data: commentData })
-    });
+         const response: APIResponse<Comment> = await fetchAPI('/api/comments', { locale });
     
     return response.data;
   } catch (error) {
@@ -415,9 +429,9 @@ export async function createComment(commentData: CommentForm): Promise<Comment |
 /**
  * Fetch comments statistics
  */
-export async function getCommentsStats(): Promise<CommentStats | null> {
+export async function getCommentsStats(locale: string): Promise<CommentStats | null> {
   try {
-    const response: APIResponse<CommentStats> = await fetchAPI('/api/comments/stats');
+         const response: APIResponse<CommentStats> = await fetchAPI('/api/comments/stats', { locale });
     return response.data;
   } catch (error) {
     console.error('Error fetching comments stats:', error);
@@ -430,13 +444,9 @@ export async function getCommentsStats(): Promise<CommentStats | null> {
 /**
  * Fetch current user profile (requires authentication)
  */
-export async function getCurrentUser(): Promise<User | null> {
+export async function getCurrentUser(locale: string): Promise<User | null> {
   try {
-    const response: APIResponse<User> = await fetchAPI('/api/users/me', {}, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
-      }
-    });
+         const response: APIResponse<User> = await fetchAPI('/api/users/me', { locale });
     
     return response.data;
   } catch (error) {

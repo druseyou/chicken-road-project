@@ -16,7 +16,7 @@ interface ArticlePageProps {
 
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
   const { slug, locale } = await params;
-  const article = await getArticleBySlug(slug);
+  const article = await getArticleBySlug(slug, locale);
   
   if (!article) {
     return {
@@ -64,9 +64,9 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
 }
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const t = await getTranslations('ArticlePage');
-  const article = await getArticleBySlug(slug);
+  const article = await getArticleBySlug(slug, locale);
 
   if (!article) {
     notFound();

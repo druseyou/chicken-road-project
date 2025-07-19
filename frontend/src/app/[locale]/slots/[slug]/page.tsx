@@ -16,7 +16,7 @@ interface SlotPageProps {
 
 export async function generateMetadata({ params }: SlotPageProps): Promise<Metadata> {
   const { slug, locale } = await params;
-  const slot = await getSlotBySlug(slug);
+  const slot = await getSlotBySlug(slug, locale);
   
   if (!slot) {
     return {
@@ -61,9 +61,9 @@ export async function generateMetadata({ params }: SlotPageProps): Promise<Metad
 }
 
 export default async function SlotPage({ params }: SlotPageProps) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const t = await getTranslations('SlotPage');
-  const slot = await getSlotBySlug(slug);
+  const slot = await getSlotBySlug(slug, locale);
   if (!slot) notFound();
 
   const { name, provider, rating, cover_image, features, rtp, volatility, min_bet, max_bet, description } = slot;

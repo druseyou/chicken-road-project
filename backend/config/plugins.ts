@@ -10,7 +10,7 @@ export default () => ({
     enabled: true,
     config: {
       defaultLocale: 'it',
-      locales: ['en', 'uk', 'it'],
+      locales: ['it', 'en', 'uk'],
     },
   },
   upload: {

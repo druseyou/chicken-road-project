@@ -52,7 +52,7 @@ async function BonusesContent({
     filters.casino_review = parseInt(searchParams.casino);
   }
 
-  const bonuses = await getBonuses(filters);
+  const bonuses = await getBonuses(filters, locale);
 
   if (!bonuses || bonuses.length === 0) {
     return (

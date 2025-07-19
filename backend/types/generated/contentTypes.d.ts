@@ -498,6 +498,11 @@ export interface ApiBonusBonus extends Struct.CollectionTypeSchema {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
     bonus_amount: Schema.Attribute.String;
     bonus_type: Schema.Attribute.Enumeration<
@@ -511,9 +516,8 @@ export interface ApiBonusBonus extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::bonus.bonus'> &
-      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::bonus.bonus'>;
     meta_description: Schema.Attribute.Text;
     meta_title: Schema.Attribute.String;
     name: Schema.Attribute.String & Schema.Attribute.Required;
@@ -541,6 +545,11 @@ export interface ApiCasinoReviewCasinoReview
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
     bonus_text: Schema.Attribute.String &
       Schema.Attribute.SetMinMaxLength<{
@@ -562,12 +571,11 @@ export interface ApiCasinoReviewCasinoReview
     games_count: Schema.Attribute.Integer;
     languages: Schema.Attribute.JSON;
     license: Schema.Attribute.String;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::casino-review.casino-review'
-    > &
-      Schema.Attribute.Private;
+    >;
     logo: Schema.Attribute.Media<'images'>;
     meta_description: Schema.Attribute.Text;
     meta_title: Schema.Attribute.String;
@@ -623,6 +631,11 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
     articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
     color: Schema.Attribute.String;
@@ -635,12 +648,11 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
       }>;
     icon: Schema.Attribute.Media<'images'>;
     is_featured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::category.category'
-    > &
-      Schema.Attribute.Private;
+    >;
     meta_description: Schema.Attribute.Text &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 160;
@@ -723,6 +735,11 @@ export interface ApiSlotSlot extends Struct.CollectionTypeSchema {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
     category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
     comments: Schema.Attribute.Relation<'oneToMany', 'api::comment.comment'>;
@@ -737,9 +754,8 @@ export interface ApiSlotSlot extends Struct.CollectionTypeSchema {
       }>;
     features: Schema.Attribute.JSON;
     is_popular: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::slot.slot'> &
-      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::slot.slot'>;
     max_bet: Schema.Attribute.Decimal;
     max_win: Schema.Attribute.Decimal;
     meta_description: Schema.Attribute.Text;

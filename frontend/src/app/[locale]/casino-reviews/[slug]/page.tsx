@@ -16,7 +16,7 @@ interface CasinoReviewPageProps {
 
 export async function generateMetadata({ params }: CasinoReviewPageProps): Promise<Metadata> {
   const { slug, locale } = await params;
-  const casino = await getCasinoBySlug(slug);
+  const casino = await getCasinoBySlug(slug, locale);
   
   if (!casino) {
     return {
@@ -61,9 +61,9 @@ export async function generateMetadata({ params }: CasinoReviewPageProps): Promi
 }
 
 export default async function CasinoReviewPage({ params }: CasinoReviewPageProps) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const t = await getTranslations('CasinoReviewPage');
-  const casino = await getCasinoBySlug(slug);
+  const casino = await getCasinoBySlug(slug, locale);
 
   if (!casino) {
     notFound();

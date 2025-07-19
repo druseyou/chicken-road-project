@@ -41,7 +41,10 @@ export default function CasinoCard({ casino, rank }: CasinoCardProps) {
           </Heading>
         </Link>
         <div className="flex items-center my-2">
-          <div className="text-yellow-500">{'★'.repeat(Math.round(rating))}{'☆'.repeat(5 - Math.round(rating))}</div>
+          <div className="text-yellow-500">
+            {'★'.repeat(Math.min(Math.max(Math.round(rating || 0), 0), 5))}
+            {'☆'.repeat(Math.max(5 - Math.min(Math.max(Math.round(rating || 0), 0), 5), 0))}
+          </div>
           <Text size="sm" color="muted" className="ml-2">{rating?.toFixed(1)}</Text>
         </div>
         <Text weight="semibold">{bonus_text}</Text>
