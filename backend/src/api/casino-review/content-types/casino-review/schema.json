@@ -1,0 +1,110 @@
+{
+  "kind": "collectionType",
+  "collectionName": "casino_reviews",
+  "info": {
+    "singularName": "casino-review",
+    "pluralName": "casino-reviews",
+    "displayName": "Casino Review",
+    "description": "Casino reviews and ratings"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100,
+      "minLength": 3
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "maxLength": 1000
+    },
+    "shortDescription": {
+      "type": "text",
+      "required": true,
+      "maxLength": 200
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "rating": {
+      "type": "decimal",
+      "min": 0,
+      "max": 10,
+      "required": true,
+      "default": 0
+    },
+    "bonus_text": {
+      "type": "string",
+      "maxLength": 150
+    },
+    "rtp": {
+      "type": "decimal",
+      "min": 80,
+      "max": 99
+    },
+    "payout_speed": {
+      "type": "string"
+    },
+    "games_count": {
+      "type": "integer"
+    },
+    "established_date": {
+      "type": "integer"
+    },
+    "detailed_review": {
+      "type": "richtext"
+    },
+    "meta_title": {
+      "type": "string"
+    },
+    "meta_description": {
+      "type": "text"
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "pros": {
+      "type": "richtext"
+    },
+    "cons": {
+      "type": "richtext"
+    },
+    "license": {
+      "type": "string"
+    },
+    "languages": {
+      "type": "json"
+    },
+    "currencies": {
+      "type": "json"
+    },
+    "payment_methods": {
+      "type": "json"
+    },
+    "bonuses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::bonus.bonus",
+      "mappedBy": "casino_review"
+    },
+    "comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment",
+      "mappedBy": "casino_review"
+    }
+  }
+} 

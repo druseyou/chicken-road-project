@@ -1,0 +1,82 @@
+{
+  "NewsPage": {
+    "title": "Notizie",
+    "description": "Ultime notizie sui casinò e sul gioco d'azzardo, recensioni e aggiornamenti dal settore.",
+    "noArticles": "Nessun articolo trovato."
+  },
+  "ArticlePage": {
+    "backToNews": "Torna alle notizie",
+    "by": "Di:",
+    "read": "lettura"
+  },
+  "HeroSection": {
+    "title": "La tua guida completa ai casinò online in Canada",
+    "subtitle": "Recensiamo e classifichiamo i migliori casinò online per i giocatori canadesi. Trova i migliori bonus, giochi e molto altro.",
+    "ctaButton": "Vedi i migliori casinò"
+  },
+  "TopCasinosSection": {
+    "title": "Casinò online più votati",
+    "subtitle": "I nostri esperti hanno recensito e classificato i migliori casinò per te.",
+    "viewAll": "Visualizza tutti i casinò"
+  },
+  "FeaturedSlotsSection": {
+    "title": "Slot online in evidenza",
+    "subtitle": "Scopri alcuni dei giochi di slot più popolari.",
+    "viewAll": "Visualizza tutte le slot"
+  },
+  "LatestNewsSection": {
+    "title": "Ultime notizie e articoli",
+    "subtitle": "Rimani aggiornato con le ultime storie del settore.",
+    "viewAll": "Leggi tutti gli articoli"
+  },
+  "CasinoReviewsPage": {
+    "title": "Recensioni di casinò",
+    "description": "Recensioni complete dei migliori casinò online con bonus, valutazioni e analisi degli esperti.",
+    "subtitle": "Trova i migliori casinò online secondo i nostri esperti"
+  },
+  "CasinoReviewPage": {
+    "backToCasinos": "Torna ai casinò",
+    "rating": "Valutazione",
+    "bonus": "Bonus",
+    "license": "Licenza",
+    "playNow": "Gioca ora",
+    "pros": "Pro",
+    "cons": "Contro",
+    "detailedReview": "Recensione dettagliata"
+  },
+  "SlotsPage": {
+    "title": "Slot",
+    "description": "Migliori recensioni di slot online, valutazioni e dove giocarle con bonus e giri gratuiti.",
+    "subtitle": "Scopri le migliori slot online"
+  },
+  "SlotPage": {
+    "backToSlots": "Torna alle slot",
+    "description": "Descrizione",
+    "provider": "Fornitore",
+    "rating": "Valutazione",
+    "features": "Caratteristiche",
+    "rtp": "RTP",
+    "volatility": "Volatilità",
+    "minBet": "Puntata min.",
+    "maxBet": "Puntata max.",
+    "playDemo": "Gioca demo",
+    "playReal": "Gioca per soldi veri",
+    "playNow": "Gioca ora"
+  },
+  "LocaleSwitcher": {
+    "label": "Seleziona lingua",
+    "selectLanguage": "Seleziona lingua",
+    "locale": "{locale, select, it {Italiano} en {English} uk {Українська} other {Sconosciuto}}"
+  },
+  "pages": {
+    "home": "Pagina iniziale",
+    "homeDescription": "Migliori recensioni di casinò e slot online per giocatori italiani. Trova i migliori bonus, giochi e valutazioni degli esperti.",
+    "contacts": "Contatti",
+    "privacy": "Politica sulla riservatezza",
+    "terms": "Termini di utilizzo",
+    "sitemap": "Mappa del sito",
+    "news": "Notizie",
+    "casino-reviews": "Recensioni di casinò",
+    "slots": "Slot"
+  }
+} 

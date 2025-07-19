@@ -1,0 +1,107 @@
+{
+  "kind": "collectionType",
+  "collectionName": "slots",
+  "info": {
+    "singularName": "slot",
+    "pluralName": "slots",
+    "displayName": "Slot",
+    "description": "Casino slot games"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100,
+      "minLength": 3
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "provider": {
+      "type": "string",
+      "required": true,
+      "maxLength": 50
+    },
+    "rtp": {
+      "type": "decimal",
+      "min": 80,
+      "max": 99,
+      "default": 96
+    },
+    "cover_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "meta_title": {
+      "type": "string"
+    },
+    "meta_description": {
+      "type": "text"
+    },
+    "volatility": {
+      "type": "enumeration",
+      "enum": ["low", "medium", "high"]
+    },
+    "theme": {
+      "type": "string"
+    },
+    "demo_link": {
+      "type": "string"
+    },
+    "min_bet": {
+      "type": "decimal"
+    },
+    "max_bet": {
+      "type": "decimal"
+    },
+    "paylines": {
+      "type": "integer"
+    },
+    "reels": {
+      "type": "integer"
+    },
+    "max_win": {
+      "type": "decimal"
+    },
+    "features": {
+      "type": "json"
+    },
+    "description": {
+      "type": "text",
+      "maxLength": 500
+    },
+    "rating": {
+      "type": "decimal",
+      "min": 0,
+      "max": 5,
+      "default": 0
+    },
+    "is_popular": {
+      "type": "boolean",
+      "default": false
+    },
+    "release_date": {
+      "type": "date"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "slots"
+    },
+    "comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment",
+      "mappedBy": "slot"
+    }
+  }
+} 
