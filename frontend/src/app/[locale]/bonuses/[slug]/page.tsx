@@ -10,6 +10,7 @@ import { Heading, Text, Button } from '@/ui/components/atoms';
 import { Card } from '@/ui/components/molecules';
 import { cn } from '@/ui/utils/cn';
 import { Bonus } from '@/types';
+import CopyButton from '@/components/ui/CopyButton';
 
 interface BonusPageProps {
   params: Promise<{ locale: string; slug: string }>;
@@ -238,12 +239,7 @@ export default async function BonusPage({ params }: BonusPageProps) {
                     <Text className="font-mono font-bold text-yellow-800">
                       {bonus.promo_code}
                     </Text>
-                    <button
-                      onClick={() => navigator.clipboard.writeText(bonus.promo_code!)}
-                      className="text-yellow-600 hover:text-yellow-700 text-sm font-medium"
-                    >
-                      {t('copy')}
-                    </button>
+                    <CopyButton text={bonus.promo_code} />
                   </div>
                 </div>
               )}
