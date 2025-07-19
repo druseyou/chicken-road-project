@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
-import { getCanonicalUrl, getAlternateUrls } from '@/utils/canonical';
+import { getCanonicalUrl, getCurrentUrl, getAlternateUrls } from '@/utils/canonical';
 import { Metadata } from 'next';
 
 interface CasinoReviewPageProps {
@@ -25,6 +25,7 @@ export async function generateMetadata({ params }: CasinoReviewPageProps): Promi
   }
 
   const canonicalUrl = getCanonicalUrl(locale, `/casino-reviews/${slug}`);
+  const currentUrl = getCurrentUrl(locale, `/casino-reviews/${slug}`);
   const alternates = getAlternateUrls(`/casino-reviews/${slug}`);
   const imageUrl = casino.logo?.url ? getStrapiURL(casino.logo.url) : undefined;
 
@@ -38,7 +39,7 @@ export async function generateMetadata({ params }: CasinoReviewPageProps): Promi
     openGraph: {
       title: `${casino.name} Review`,
       description: casino.detailed_review?.slice(0, 160) + '...' || `Complete review of ${casino.name} casino with bonuses, games and ratings.`,
-      url: canonicalUrl,
+      url: currentUrl,
       siteName: 'Chicken Road Project',
       locale: locale,
       type: 'article',

@@ -4,7 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getCanonicalUrl, getAlternateUrls } from '@/utils/canonical';
+import { getCanonicalUrl, getCurrentUrl, getAlternateUrls } from '@/utils/canonical';
 import { Metadata } from 'next';
 
 interface SlotPageProps {
@@ -25,6 +25,7 @@ export async function generateMetadata({ params }: SlotPageProps): Promise<Metad
   }
 
   const canonicalUrl = getCanonicalUrl(locale, `/slots/${slug}`);
+  const currentUrl = getCurrentUrl(locale, `/slots/${slug}`);
   const alternates = getAlternateUrls(`/slots/${slug}`);
   const imageUrl = slot.cover_image?.url ? getStrapiURL(slot.cover_image.url) : undefined;
 
@@ -38,7 +39,7 @@ export async function generateMetadata({ params }: SlotPageProps): Promise<Metad
     openGraph: {
       title: `${slot.name} Slot Review`,
       description: slot.description?.slice(0, 160) + '...' || `Play ${slot.name} slot by ${slot.provider}. RTP: ${slot.rtp}%, Volatility: ${slot.volatility}.`,
-      url: canonicalUrl,
+      url: currentUrl,
       siteName: 'Chicken Road Project',
       locale: locale,
       type: 'article',

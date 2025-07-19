@@ -20,7 +20,9 @@ export function getCanonicalUrl(locale: string, pathname: string): string {
   const cleanPath = pathname.startsWith('/') ? pathname.slice(1) : pathname;
   
   // Canonical always points to default locale (it) version
-  return cleanPath ? `${SITE_URL}/${cleanPath}` : SITE_URL;
+  const canonicalUrl = cleanPath ? `${SITE_URL}/${cleanPath}` : SITE_URL;
+  
+  return canonicalUrl;
 }
 
 /**
@@ -33,13 +35,17 @@ export function getCurrentUrl(locale: string, pathname: string): string {
   // Remove leading slash if present
   const cleanPath = pathname.startsWith('/') ? pathname.slice(1) : pathname;
   
+  let currentUrl: string;
+  
   // For default locale (it), don't include locale in URL
   if (locale === DEFAULT_LOCALE) {
-    return cleanPath ? `${SITE_URL}/${cleanPath}` : SITE_URL;
+    currentUrl = cleanPath ? `${SITE_URL}/${cleanPath}` : SITE_URL;
+  } else {
+    // For other locales, include locale prefix
+    currentUrl = cleanPath ? `${SITE_URL}/${locale}/${cleanPath}` : `${SITE_URL}/${locale}`;
   }
   
-  // For other locales, include locale prefix
-  return cleanPath ? `${SITE_URL}/${locale}/${cleanPath}` : `${SITE_URL}/${locale}`;
+  return currentUrl;
 }
 
 /**

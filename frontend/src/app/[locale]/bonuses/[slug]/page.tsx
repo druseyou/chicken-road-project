@@ -5,7 +5,7 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import { getBonusBySlug } from '@/services/strapi';
-import { getCanonicalUrl } from '@/utils/canonical';
+import { getCanonicalUrl, getCurrentUrl, getAlternateUrls } from '@/utils/canonical';
 import { Heading, Text, Button } from '@/ui/components/atoms';
 import { Card } from '@/ui/components/molecules';
 import { cn } from '@/ui/utils/cn';
@@ -23,16 +23,34 @@ export async function generateMetadata({
   
   if (!bonus) {
     return {
-      title: 'Bonus Not Found'
+      title: 'Bonus Not Found | Chicken Road Project'
     };
   }
 
+  const canonicalUrl = getCanonicalUrl(locale, `/bonuses/${slug}`);
+  const currentUrl = getCurrentUrl(locale, `/bonuses/${slug}`);
+  const alternates = getAlternateUrls(`/bonuses/${slug}`);
+
   return {
-    title: bonus.meta_title || bonus.name,
+    title: `${bonus.meta_title || bonus.name} | Chicken Road Project`,
     description: bonus.meta_description || `${bonus.name} - ${bonus.bonus_amount || 'Exclusive bonus'}`,
     alternates: {
-      canonical: getCanonicalUrl(locale, `/bonuses/${slug}`)
-    }
+      canonical: canonicalUrl,
+      languages: alternates,
+    },
+    openGraph: {
+      title: bonus.name,
+      description: bonus.meta_description || `${bonus.name} - ${bonus.bonus_amount || 'Exclusive bonus'}`,
+      url: currentUrl,
+      siteName: 'Chicken Road Project',
+      locale: locale,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: bonus.name,
+      description: bonus.meta_description || `${bonus.name} - ${bonus.bonus_amount || 'Exclusive bonus'}`,
+    },
   };
 }
 

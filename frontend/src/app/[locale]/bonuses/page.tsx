@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { getBonuses } from '@/services/strapi';
-import { getCanonicalUrl } from '@/utils/canonical';
+import { getCanonicalUrl, getCurrentUrl, getAlternateUrls } from '@/utils/canonical';
 import BonusCard from '@/components/cards/BonusCard';
 import { Heading, Text } from '@/ui/components/atoms';
 import { Bonus, BonusFilters } from '@/types';
@@ -24,13 +24,31 @@ export async function generateMetadata({
   const title = type 
     ? `${t('title')} - ${t(`types.${type}`)}`
     : t('title');
+
+  const canonicalUrl = getCanonicalUrl(locale, '/bonuses');
+  const currentUrl = getCurrentUrl(locale, '/bonuses');
+  const alternates = getAlternateUrls('/bonuses');
   
   return {
-    title,
+    title: `${title} | Chicken Road Project`,
     description: t('description'),
     alternates: {
-      canonical: getCanonicalUrl(locale, '/bonuses')
-    }
+      canonical: canonicalUrl,
+      languages: alternates,
+    },
+    openGraph: {
+      title: `${title} | Chicken Road Project`,
+      description: t('description'),
+      url: currentUrl,
+      siteName: 'Chicken Road Project',
+      locale: locale,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${title} | Chicken Road Project`,
+      description: t('description'),
+    },
   };
 }
 

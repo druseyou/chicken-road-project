@@ -15,24 +15,21 @@ export async function generateMetadata({ params }: NewsPageProps): Promise<Metad
   const { locale } = await params;
   const t = await getTranslations('NewsPage');
   
-  const canonicalPath = '/news';
-  const currentPath = locale === 'it' ? '/news' : `/${locale}/news`;
+  const canonicalUrl = getCanonicalUrl(locale, '/news');
+  const currentUrl = getCurrentUrl(locale, '/news');
+  const alternates = getAlternateUrls('/news');
 
   return {
     title: t('title') + ' | Chicken Road Project',
     description: t('description') || 'Latest casino and gambling news, reviews and updates.',
     alternates: {
-      canonical: canonicalPath,
-      languages: {
-        'it': '/news',
-        'en': '/en/news',
-        'uk': '/uk/news',
-      },
+      canonical: canonicalUrl,
+      languages: alternates,
     },
     openGraph: {
       title: t('title') + ' | Chicken Road Project',
       description: t('description') || 'Latest casino and gambling news, reviews and updates.',
-      url: currentPath,
+      url: currentUrl,
       siteName: 'Chicken Road Project',
       locale: locale,
       type: 'website',
