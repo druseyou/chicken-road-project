@@ -1,5 +1,4 @@
 import { Suspense } from 'react';
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
@@ -10,18 +9,20 @@ import { Heading, Text } from '@/ui/components/atoms';
 import { Bonus, BonusFilters } from '@/types';
 
 interface BonusesPageProps {
-  params: { locale: string };
-  searchParams: { type?: string; casino?: string };
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ type?: string; casino?: string }>;
 }
 
 export async function generateMetadata({ 
-  params: { locale },
+  params,
   searchParams 
 }: BonusesPageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const { type } = await searchParams;
   const t = await getTranslations('BonusesPage');
   
-  const title = searchParams.type 
-    ? `${t('title')} - ${t(`types.${searchParams.type}`)}`
+  const title = type 
+    ? `${t('title')} - ${t(`types.${type}`)}`
     : t('title');
   
   return {
@@ -33,11 +34,14 @@ export async function generateMetadata({
   };
 }
 
-async function BonusesContent({ locale, searchParams }: { 
+async function BonusesContent({ 
+  locale, 
+  searchParams 
+}: { 
   locale: string; 
-  searchParams: BonusesPageProps['searchParams'];
+  searchParams: { type?: string; casino?: string };
 }) {
-  const t = useTranslations('BonusesPage');
+  const t = await getTranslations('BonusesPage');
   
   // Build filters from search params
   const filters: BonusFilters = {};
@@ -73,8 +77,8 @@ async function BonusesContent({ locale, searchParams }: {
   );
 }
 
-function BonusTypeFilter({ currentType }: { currentType?: string }) {
-  const t = useTranslations('BonusesPage');
+async function BonusTypeFilter({ currentType }: { currentType?: string }) {
+  const t = await getTranslations('BonusesPage');
   
   const bonusTypes = [
     'welcome',
@@ -117,8 +121,10 @@ function BonusTypeFilter({ currentType }: { currentType?: string }) {
   );
 }
 
-export default function BonusesPage({ params: { locale }, searchParams }: BonusesPageProps) {
-  const t = useTranslations('BonusesPage');
+export default async function BonusesPage({ params, searchParams }: BonusesPageProps) {
+  const { locale } = await params;
+  const resolvedSearchParams = await searchParams;
+  const t = await getTranslations('BonusesPage');
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -133,7 +139,7 @@ export default function BonusesPage({ params: { locale }, searchParams }: Bonuse
       </div>
 
       {/* Filters */}
-      <BonusTypeFilter currentType={searchParams.type} />
+      <BonusTypeFilter currentType={resolvedSearchParams.type} />
 
       {/* Content */}
       <Suspense fallback={
@@ -143,7 +149,7 @@ export default function BonusesPage({ params: { locale }, searchParams }: Bonuse
           ))}
         </div>
       }>
-        <BonusesContent locale={locale} searchParams={searchParams} />
+        <BonusesContent locale={locale} searchParams={resolvedSearchParams} />
       </Suspense>
     </div>
   );
