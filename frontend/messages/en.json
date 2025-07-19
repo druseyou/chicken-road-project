@@ -58,7 +58,10 @@
     "maxBet": "Max bet",
     "paylines": "Paylines",
     "playDemo": "Play demo",
-    "playForReal": "Play for real"
+    "playForReal": "Play for real",
+    "features": "Features",
+    "playNow": "Play Now",
+    "description": "Description"
   },
   "Header": {
     "home": "Home",

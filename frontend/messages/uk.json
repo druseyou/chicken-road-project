@@ -58,7 +58,10 @@
     "maxBet": "Макс. ставка",
     "paylines": "Лінії виплат",
     "playDemo": "Демо-гра",
-    "playForReal": "Грати на гроші"
+    "playForReal": "Грати на гроші",
+    "features": "Особливості",
+    "playNow": "Грати зараз",
+    "description": "Опис"
   },
   "Header": {
     "home": "Головна",

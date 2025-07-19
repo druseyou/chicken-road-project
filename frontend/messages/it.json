@@ -58,7 +58,10 @@
     "maxBet": "Puntata max",
     "paylines": "Linee di pagamento",
     "playDemo": "Gioca demo",
-    "playForReal": "Gioca con soldi veri"
+    "playForReal": "Gioca con soldi veri",
+    "features": "Caratteristiche",
+    "playNow": "Gioca ora",
+    "description": "Descrizione"
   },
   "Header": {
     "home": "Home",
