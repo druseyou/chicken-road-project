@@ -263,8 +263,8 @@ export async function getCategoryStats(id: number, locale: string): Promise<Cate
  */
 export async function getBonuses(filters: BonusFilters = {}, locale: string): Promise<Bonus[]> {
   const params: Record<string, any> = {
-    populate: ['casino_review.logo'],
-    fields: ['name', 'slug', 'bonus_type', 'bonus_amount', 'promo_code', 'valid_until'],
+    populate: ['casino_review', 'casino_review.logo'],
+    fields: ['name', 'slug', 'bonus_type', 'bonus_amount', 'promo_code', 'valid_until', 'terms', 'wagering_requirements'],
     'pagination[page]': 1,
     'pagination[pageSize]': 20,
     sort: 'createdAt:desc'
@@ -281,7 +281,16 @@ export async function getBonuses(filters: BonusFilters = {}, locale: string): Pr
     };
   }
   
-  return fetchStrapiData<Bonus>('/api/bonuses', params, 'Bonuses', locale);
+  // Try to fetch with specified locale first
+  let bonuses = await fetchStrapiData<Bonus>('/api/bonuses', params, 'Bonuses', locale);
+  
+  // If no bonuses found and locale is not the default, try default locale (it)
+  if (bonuses.length === 0 && locale !== 'it') {
+    console.log(`[Bonuses] No bonuses found for locale ${locale}, trying fallback to 'it'`);
+    bonuses = await fetchStrapiData<Bonus>('/api/bonuses', params, 'Bonuses (Fallback)', 'it');
+  }
+  
+  return bonuses;
 }
 
 /**

@@ -212,7 +212,11 @@
     "valid_until": "Valid until {date}",
     "expired": "Expired",
     "view_details": "View details",
-    "visit_casino": "Visit casino"
+    "visit_casino": "Visit casino",
+    "no_casino_associated": "No casino specified",
+    "expires_tomorrow": "Expires tomorrow",
+    "expires_in_days": "Expires in {days} days",
+    "featured": "Featured"
   },
   "CommentCard": {
     "commented_on_casino": "Comment on casino:",

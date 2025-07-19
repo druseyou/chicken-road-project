@@ -19,8 +19,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
         'bg-white border border-gray-200 shadow-sm hover:shadow-md',
       ],
       casino: [
-        'bg-gradient-to-br from-red-50 to-red-100 border border-red-200',
-        'shadow-md hover:shadow-lg hover:from-red-100 hover:to-red-200',
+        'bg-white border border-gray-200 shadow-sm hover:shadow-md',
       ],
       slot: [
         'bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200',

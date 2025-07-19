@@ -257,7 +257,11 @@
     "valid_until": "Діє до {date}",
     "expired": "Закінчився",
     "view_details": "Детальніше",
-    "visit_casino": "Відвідати казино"
+    "visit_casino": "Відвідати казино",
+    "no_casino_associated": "Казино не вказано",
+    "expires_tomorrow": "Закінчується завтра",
+    "expires_in_days": "Закінчується через {days} днів",
+    "featured": "Рекомендований"
   },
   "CommentCard": {
     "commented_on_casino": "Коментар до казино:",
