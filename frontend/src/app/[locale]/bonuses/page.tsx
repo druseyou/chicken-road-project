@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 import { getBonuses } from '@/services/strapi';
 import { getCanonicalUrl, getCurrentUrl, getAlternateUrls } from '@/utils/canonical';
 import { Bonus } from '@/types';
-import SimpleBonusCard from '@/components/cards/SimpleBonusCard';
+import ServerBonusCard from '@/components/cards/ServerBonusCard';
 
 
 
@@ -164,10 +164,11 @@ export default async function BonusesPage(props: BonusesPageProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {welcomeBonuses.map((bonus) => (
-                <SimpleBonusCard 
+                <ServerBonusCard 
                   key={bonus.id} 
                   bonus={bonus}
                   showCasino={true}
+                  locale={locale}
                 />
               ))}
             </div>
@@ -188,10 +189,11 @@ export default async function BonusesPage(props: BonusesPageProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {noDepositBonuses.map((bonus) => (
-                <SimpleBonusCard 
+                <ServerBonusCard 
                   key={bonus.id} 
                   bonus={bonus}
                   showCasino={true}
+                  locale={locale}
                 />
               ))}
             </div>
@@ -212,10 +214,11 @@ export default async function BonusesPage(props: BonusesPageProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {freeSpinsBonuses.map((bonus) => (
-                <SimpleBonusCard 
+                <ServerBonusCard 
                   key={bonus.id} 
                   bonus={bonus}
                   showCasino={true}
+                  locale={locale}
                 />
               ))}
             </div>
@@ -236,10 +239,11 @@ export default async function BonusesPage(props: BonusesPageProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {otherBonuses.map((bonus) => (
-                <SimpleBonusCard 
+                <ServerBonusCard 
                   key={bonus.id} 
                   bonus={bonus}
                   showCasino={true}
+                  locale={locale}
                 />
               ))}
             </div>

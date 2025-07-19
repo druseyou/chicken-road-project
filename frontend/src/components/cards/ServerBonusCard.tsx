@@ -1,15 +1,15 @@
-'use client';
-
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { Bonus } from '@/types';
 
-interface SimpleBonusCardProps {
+interface ServerBonusCardProps {
   bonus: Bonus;
   showCasino?: boolean;
+  locale: string;
 }
 
-export default function SimpleBonusCard({ bonus, showCasino = true }: SimpleBonusCardProps) {
-  const t = useTranslations('SimpleBonusCard');
+export default async function ServerBonusCard({ bonus, showCasino = true, locale }: ServerBonusCardProps) {
+  const t = await getTranslations('SimpleBonusCard');
+
   return (
     <div className="rounded-lg p-6 transition-all duration-300 overflow-hidden bg-white border border-gray-200 shadow-sm hover:shadow-lg group hover:shadow-xl">
       {/* Header */}
