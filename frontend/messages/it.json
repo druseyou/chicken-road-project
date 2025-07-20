@@ -301,6 +301,14 @@
     "claimBonus": "Richiedi bonus",
     "termsApply": "Si applicano i termini"
   },
+  "SimpleBonusCard": {
+    "bonusAmount": "Importo del Bonus",
+    "promoCode": "Codice Promozionale",
+    "availableAt": "Disponibile presso",
+    "casinoNotSpecified": "Casinò non specificato",
+    "viewDetails": "Vedi Dettagli",
+    "visitCasino": "Visita Casinò"
+  },
   "LocaleSwitcher": {
     "label": "Seleziona lingua",
     "selectLanguage": "Seleziona lingua",

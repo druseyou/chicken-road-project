@@ -302,6 +302,14 @@
     "claimBonus": "Отримати бонус",
     "termsApply": "Застосовуються умови"
   },
+  "SimpleBonusCard": {
+    "bonusAmount": "Сума бонусу",
+    "promoCode": "Промо-код",
+    "availableAt": "Доступний в",
+    "casinoNotSpecified": "Казино не вказано",
+    "viewDetails": "Детальніше",
+    "visitCasino": "Відвідати казино"
+  },
   "LocaleSwitcher": {
     "label": "Оберіть мову",
     "selectLanguage": "Оберіть мову",
