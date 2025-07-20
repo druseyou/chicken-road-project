@@ -75,7 +75,11 @@
     "casinos": "Casinos",
     "slots": "Slots",
     "news": "News",
-    "bonuses": "Bonuses"
+    "bonuses": "Bonuses",
+    "siteName": "Chicken Road",
+    "tagline": "Casino Guide",
+    "playNow": "Play Now",
+    "toggleMenu": "Toggle menu"
   },
   "Navigation": {
     "home": "Home",
@@ -127,6 +131,7 @@
   },
   "Footer": {
     "description": "Your trusted guide in the world of online casinos",
+    "tagline": "Casino Guide",
     "quickLinks": "Quick Links",
     "legal": "Legal Information",
     "privacyPolicy": "Privacy Policy",
@@ -138,7 +143,19 @@
     "news": "News",
     "contacts": "Contacts",
     "sitemap": "Sitemap",
-    "allRightsReserved": "All rights reserved"
+    "allRightsReserved": "All rights reserved",
+    "licensed": "Licensed",
+    "secure": "Secure",
+    "fastPayouts": "Fast Payouts",
+    "newsletter": "Newsletter",
+    "newsletterDesc": "Get the latest news and bonuses",
+    "emailPlaceholder": "Your email address",
+    "subscribe": "Subscribe",
+    "followUs": "Follow Us",
+    "responsibleGaming": "Play responsibly",
+    "ageRestriction": "18+ Only",
+    "verified": "Verified",
+    "disclaimer": "Warning: gambling can be addictive. Play responsibly and within your means. This site is intended for persons 18 years or older only."
   },
   "CasinoReviewsPage": {
     "title": "Casino Reviews",
