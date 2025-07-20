@@ -8,7 +8,7 @@ interface CopyButtonProps {
   className?: string;
 }
 
-export default function CopyButton({ text, className = '' }: CopyButtonProps) {
+const CopyButton = ({ text, className = '' }: CopyButtonProps) => {
   const [copied, setCopied] = useState(false);
   const t = useTranslations('BonusPage');
 
@@ -30,4 +30,6 @@ export default function CopyButton({ text, className = '' }: CopyButtonProps) {
       {copied ? t('copied') : t('copy')}
     </button>
   );
-} 
+};
+
+export { CopyButton }; 

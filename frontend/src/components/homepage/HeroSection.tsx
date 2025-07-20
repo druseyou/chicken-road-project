@@ -118,7 +118,7 @@ export default async function HeroSection() {
             </Link>
             <span className="text-blue-300">•</span>
             <Link 
-              href="/free-games" 
+              href="/slots" 
               className="text-blue-200 hover:text-white transition-colors underline decoration-blue-300 hover:decoration-white"
             >
               {t('quickNav.freeGames')}

@@ -4,7 +4,7 @@ import { Article } from '@/types';
 import { getStrapiURL } from '@/services/api';
 import { Card, CardContent } from '@/ui/components/molecules';
 import { Heading, Text, StatusBadge } from '@/ui/components/atoms';
-import OptimizedImage from '@/components/ui/OptimizedImage';
+import { OptimizedImage } from '@/ui/components/atoms/OptimizedImage';
 import { useTranslations } from 'next-intl';
 
 interface ArticleCardProps {

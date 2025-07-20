@@ -25,7 +25,7 @@ const BLUR_DATA_URL = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA
  * - Error handling з fallback
  * - Responsive images
  */
-export default function OptimizedImage({
+const OptimizedImage = ({
   src,
   alt,
   className,
@@ -35,7 +35,7 @@ export default function OptimizedImage({
   fallbackSrc = '/placeholder.svg',
   priority = false,
   ...props
-}: OptimizedImageProps) {
+}: OptimizedImageProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const [imageSrc, setImageSrc] = useState(src);
@@ -92,4 +92,6 @@ export default function OptimizedImage({
       )}
     </div>
   );
-} 
+};
+
+export { OptimizedImage }; 

@@ -10,7 +10,7 @@ import { Heading, Text, Button } from '@/ui/components/atoms';
 import { Card } from '@/ui/components/molecules';
 import { cn } from '@/ui/utils/cn';
 import { Bonus } from '@/types';
-import CopyButton from '@/components/ui/CopyButton';
+import { CopyButton } from '@/ui/components/atoms/CopyButton';
 
 interface BonusPageProps {
   params: Promise<{ locale: string; slug: string }>;

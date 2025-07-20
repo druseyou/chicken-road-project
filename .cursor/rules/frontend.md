@@ -31,6 +31,7 @@ frontend/src/
 
 ### **Design System Usage**
 - **ALWAYS** use components from `src/ui/components/` instead of creating new ones
+- **NEVER** use components from deprecated `src/components/ui/` - all UI components have been migrated to `src/ui/`
 - Use design tokens from `src/ui/tokens/` for consistent styling
 - Prefer CSS variables over hardcoded values
 - Use the `cn()` utility for merging Tailwind classes
@@ -97,11 +98,17 @@ import Link from 'next/link';
 // 2. Third-party libraries
 import { useTranslations } from 'next-intl';
 
-// 3. Internal components and utilities
-import { Card, Button, Heading } from '@/ui/components';
+// 3. UI System components (PREFERRED - use centralized imports)
+import { Card, Button, Heading, OptimizedImage, CopyButton } from '@/ui';
+// OR specific imports for better tree-shaking
+import { Card } from '@/ui/components/molecules';
+import { Button, Heading } from '@/ui/components/atoms';
 import { cn } from '@/ui/utils/cn';
 
-// 4. Services and types
+// 4. Business logic components
+import { ArticleCard, CasinoCard } from '@/components/cards';
+
+// 5. Services and types
 import { Casino } from '@/types';
 import { getCasinos } from '@/services/strapi';
 ```
@@ -169,7 +176,19 @@ if (!data) {
 
 ### **Image Optimization**
 ```typescript
-// ✅ Use Next.js Image component
+// ✅ PREFERRED: Use OptimizedImage from UI system
+import { OptimizedImage } from '@/ui';
+
+<OptimizedImage
+  src={imageUrl}
+  alt={altText}
+  fill
+  className="object-cover"
+  showBlurPlaceholder={true}
+  fallbackSrc="/placeholder.svg"
+/>
+
+// ✅ Alternative: Use Next.js Image component directly
 import Image from 'next/image';
 
 <Image
@@ -258,6 +277,13 @@ import Link from 'next/link';
 
 // Don't create custom components when UI system exists
 const CustomButton = () => <button>...</button>;
+
+// Don't import from deprecated components/ui folder
+import OptimizedImage from '@/components/ui/OptimizedImage';
+import CopyButton from '@/components/ui/CopyButton';
+
+// Don't use default exports for UI components (inconsistent pattern)
+export default function MyComponent() { ... }
 ```
 
 ### **✅ DO THIS INSTEAD**
@@ -275,9 +301,20 @@ const CustomButton = () => <button>...</button>;
 import { Link } from '@/i18n/navigation';
 <Link href="/casino-reviews">
 
-// Use UI system components
+// Use UI system components (PREFERRED: centralized import)
+import { Button, OptimizedImage, CopyButton } from '@/ui';
+<Button variant="primary">
+
+// OR specific imports for better tree-shaking
 import { Button } from '@/ui/components/atoms';
 <Button variant="primary">
+
+// Use consistent export pattern for UI components
+const MyComponent = ({ prop }: Props) => {
+  return <div>{prop}</div>;
+};
+
+export { MyComponent };
 ```
 
 ## 📝 **File Naming Conventions**
@@ -301,6 +338,40 @@ import { colors, spacing, typography } from '@/ui/tokens';
 <Button size="lg" variant="casino">
 ```
 
+## 🔄 **Component Migration Guidelines**
+
+### **UI System Migration Status**
+- ✅ **COMPLETED**: All components from `src/components/ui/` have been migrated to `src/ui/`
+- ✅ **OptimizedImage**: Migrated to `src/ui/components/atoms/OptimizedImage/`
+- ✅ **CopyButton**: Migrated to `src/ui/components/atoms/CopyButton/`
+
+### **Migration Pattern Used**
+```typescript
+// OLD (deprecated pattern)
+export default function Component() { ... }
+
+// NEW (consistent UI system pattern)
+const Component = ({ prop }: Props) => {
+  return <div>{prop}</div>;
+};
+
+export { Component };
+```
+
+### **Import Path Migration**
+```typescript
+// ❌ OLD: Don't use these paths anymore
+import OptimizedImage from '@/components/ui/OptimizedImage';
+import CopyButton from '@/components/ui/CopyButton';
+
+// ✅ NEW: Use centralized UI imports
+import { OptimizedImage, CopyButton } from '@/ui';
+
+// ✅ NEW: Or specific atomic imports
+import { OptimizedImage } from '@/ui/components/atoms/OptimizedImage';
+import { CopyButton } from '@/ui/components/atoms/CopyButton';
+```
+
 ## 🔍 **Testing Guidelines**
 
 - Write unit tests for utility functions
@@ -314,13 +385,15 @@ import { colors, spacing, typography } from '@/ui/tokens';
 ## 📋 **Quick Checklist**
 
 Before submitting code, verify:
-- [ ] Uses UI system components
-- [ ] All text is translated
-- [ ] Proper TypeScript types
+- [ ] Uses UI system components from `@/ui` (NOT from deprecated `@/components/ui`)
+- [ ] All text is translated using `useTranslations`
+- [ ] Proper TypeScript types defined
 - [ ] Responsive design implemented
-- [ ] Accessibility features included
-- [ ] Images optimized with Next.js Image
-- [ ] Error handling implemented
-- [ ] Performance considerations applied
+- [ ] Accessibility features included (ARIA labels, keyboard navigation)
+- [ ] Images optimized with `OptimizedImage` or Next.js Image
+- [ ] Error handling implemented with try/catch
+- [ ] Performance considerations applied (lazy loading, code splitting)
 - [ ] SEO meta tags included (for pages)
-- [ ] Follows naming conventions 
+- [ ] Follows naming conventions (PascalCase for components)
+- [ ] Uses consistent export pattern (`const Component = () => {}; export { Component };`)
+- [ ] No imports from deprecated `@/components/ui/` folder 
