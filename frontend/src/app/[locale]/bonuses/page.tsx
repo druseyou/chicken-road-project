@@ -3,10 +3,8 @@ import { getTranslations } from 'next-intl/server';
 import { Metadata } from 'next';
 import { getBonuses } from '@/services/strapi';
 import { getCanonicalUrl, getCurrentUrl, getAlternateUrls } from '@/utils/canonical';
+import BonusCard from '@/components/cards/BonusCard';
 import { Bonus } from '@/types';
-import SimpleBonusCard from '@/components/cards/SimpleBonusCard';
-
-
 
 interface BonusesPageProps {
   params: Promise<{ locale: string }>;
@@ -68,8 +66,8 @@ export default async function BonusesPage(props: BonusesPageProps) {
         <div className="container mx-auto px-4 py-12">
           <h1 className="text-4xl font-bold text-red-600 mb-10 text-left">{t('title')}</h1>
           <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">{t('noBonuses')}</p>
-            <p className="text-gray-400 text-sm mt-2">API: http://localhost:1337/api/bonuses</p>
+            <p className="text-gray-500 text-lg">Нет доступных бонусов.</p>
+            <p className="text-gray-400 text-sm mt-2">Проверьте API: http://localhost:1337/api/bonuses</p>
           </div>
         </div>
       </div>
@@ -164,7 +162,7 @@ export default async function BonusesPage(props: BonusesPageProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {welcomeBonuses.map((bonus) => (
-                <SimpleBonusCard 
+                <BonusCard 
                   key={bonus.id} 
                   bonus={bonus}
                   showCasino={true}
@@ -188,7 +186,7 @@ export default async function BonusesPage(props: BonusesPageProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {noDepositBonuses.map((bonus) => (
-                <SimpleBonusCard 
+                <BonusCard 
                   key={bonus.id} 
                   bonus={bonus}
                   showCasino={true}
@@ -212,7 +210,7 @@ export default async function BonusesPage(props: BonusesPageProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {freeSpinsBonuses.map((bonus) => (
-                <SimpleBonusCard 
+                <BonusCard 
                   key={bonus.id} 
                   bonus={bonus}
                   showCasino={true}
@@ -236,7 +234,7 @@ export default async function BonusesPage(props: BonusesPageProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {otherBonuses.map((bonus) => (
-                <SimpleBonusCard 
+                <BonusCard 
                   key={bonus.id} 
                   bonus={bonus}
                   showCasino={true}

@@ -1,11 +1,10 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
-import { Button, Heading, Text, Rating } from '@/ui/components/atoms';
-import { StatusBadge } from '@/ui/components/atoms/Badge';
+import { Card } from '@/ui/components/molecules';
+import { Button, Heading, Text, StatusBadge, Rating, GradientButton } from '@/ui/components/atoms';
 import { cn } from '@/ui/utils/cn';
 import { Bonus } from '@/types';
 
@@ -18,27 +17,33 @@ interface BonusCardProps {
 
 const bonusTypeConfig = {
   'welcome': { 
-    badge: 'featured' as const,
+    gradient: 'from-yellow-500 to-orange-500',
+    badge: 'featured',
     icon: '🎉'
   },
   'deposit': { 
-    badge: 'casino' as const,
+    gradient: 'from-blue-500 to-purple-500',
+    badge: 'casino',
     icon: '💰'
   },
   'no-deposit': { 
-    badge: 'success' as const,
+    gradient: 'from-green-500 to-teal-500',
+    badge: 'success',
     icon: '🎁'
   },
   'free-spins': { 
-    badge: 'premium' as const,
+    gradient: 'from-pink-500 to-rose-500',
+    badge: 'premium',
     icon: '🎰'
   },
   'cashback': { 
-    badge: 'premium' as const,
+    gradient: 'from-indigo-500 to-blue-500',
+    badge: 'premium',
     icon: '🔄'
   },
   'reload': { 
-    badge: 'default' as const,
+    gradient: 'from-gray-500 to-slate-500',
+    badge: 'default',
     icon: '⚡'
   },
 } as const;
@@ -50,54 +55,55 @@ export default function BonusCard({
   featured = false
 }: BonusCardProps) {
   const t = useTranslations('BonusCard');
-  
-  // State для клієнтських обчислень
-  const [isExpired, setIsExpired] = useState(false);
-  const [expiryDate, setExpiryDate] = useState<Date | null>(null);
-  const [daysLeft, setDaysLeft] = useState<number | null>(null);
-  const [formattedDate, setFormattedDate] = useState<string>('');
-  const [isClient, setIsClient] = useState(false);
 
+  const isExpired = bonus.valid_until ? new Date(bonus.valid_until) < new Date() : false;
+  const expiryDate = bonus.valid_until ? new Date(bonus.valid_until) : null;
   const config = bonusTypeConfig[bonus.bonus_type] || bonusTypeConfig.deposit;
 
-  // Обчислення дат тільки на клієнті
-  useEffect(() => {
-    setIsClient(true);
-    
-    if (bonus.valid_until) {
-      const expiry = new Date(bonus.valid_until);
-      const now = new Date();
-      const expired = expiry < now;
-      const diffTime = expiry.getTime() - now.getTime();
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      
-      setExpiryDate(expiry);
-      setIsExpired(expired);
-      setDaysLeft(diffDays);
-      setFormattedDate(new Intl.DateTimeFormat('uk-UA', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric'
-      }).format(expiry));
-    }
-  }, [bonus.valid_until]);
+  const formatExpiryDate = (date: Date) => {
+    return new Intl.DateTimeFormat('uk-UA', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    }).format(date);
+  };
+
+  const getDaysUntilExpiry = () => {
+    if (!expiryDate) return null;
+    const now = new Date();
+    const diffTime = expiryDate.getTime() - now.getTime();
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays;
+  };
+
+  const daysLeft = getDaysUntilExpiry();
 
   return (
-    <div 
+    <Card 
+      variant="casino" 
+      padding="none"
       className={cn(
-        // Base card styles
-        'rounded-lg p-6 transition-all duration-300 overflow-hidden',
-        'bg-white border border-gray-200 shadow-sm hover:shadow-lg',
-        // Interactive styles
-        'group hover:shadow-xl',
-        // Conditional styles
-        isClient && isExpired && 'opacity-60 grayscale',
+        'group hover:shadow-xl transition-all duration-300 overflow-hidden',
+        'border-l-4 bg-gradient-to-br from-white to-gray-50',
+        `border-l-${config.gradient.split(' ')[0].replace('from-', '')}`,
+        isExpired && 'opacity-60 grayscale',
         featured && 'ring-2 ring-yellow-400 ring-opacity-75',
         className
       )}
     >
-        {/* Header */}
-        <div className="flex items-start justify-between mb-4">
+      {/* Header with gradient background */}
+      <div className={cn(
+        'bg-gradient-to-r p-4 text-white relative overflow-hidden',
+        config.gradient
+      )}>
+        {/* Background pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="w-full h-full bg-repeat" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='20' cy='20' r='2'/%3E%3C/g%3E%3C/svg%3E")`
+          }} />
+        </div>
+
+        <div className="relative z-10 flex items-start justify-between">
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-2">
               <span className="text-2xl">{config.icon}</span>
@@ -109,7 +115,7 @@ export default function BonusCard({
                   {t('featured')}
                 </StatusBadge>
               )}
-              {isClient && bonus.valid_until && isExpired && (
+              {isExpired && (
                 <StatusBadge variant="error" size="sm">
                   {t('expired')}
                 </StatusBadge>
@@ -119,7 +125,7 @@ export default function BonusCard({
             <Heading 
               as="h3" 
               size="lg" 
-              className="font-bold text-gray-900 line-clamp-2"
+              className="font-bold text-white line-clamp-2"
             >
               {bonus.name}
             </Heading>
@@ -127,7 +133,7 @@ export default function BonusCard({
 
           {showCasino && bonus.casino_review?.logo && (
             <div className="flex-shrink-0 ml-4">
-              <div className="bg-gray-100 rounded-lg p-2">
+              <div className="bg-white/20 backdrop-blur-sm rounded-lg p-2">
                 <Image
                   src={bonus.casino_review.logo.url}
                   alt={bonus.casino_review.logo.alternativeText || bonus.casino_review.name}
@@ -139,8 +145,9 @@ export default function BonusCard({
             </div>
           )}
         </div>
+      </div>
 
-        <div className="space-y-4">
+      <div className="p-4 space-y-4">
         {/* Bonus Amount - prominent display */}
         {bonus.bonus_amount && (
           <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl p-4 text-center border">
@@ -192,6 +199,7 @@ export default function BonusCard({
                       size="sm" 
                       variant="casino"
                       showValue={true}
+                      readonly={true}
                     />
                   </div>
                 )}
@@ -200,20 +208,8 @@ export default function BonusCard({
           </div>
         )}
 
-        {/* Show fallback when no casino is associated */}
-        {showCasino && !bonus.casino_review && (
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
-            <div className="flex items-center gap-2">
-              <span className="text-yellow-600">⚠️</span>
-              <Text size="sm" className="text-yellow-700">
-                {t('no_casino_associated')}
-              </Text>
-            </div>
-          </div>
-        )}
-
         {/* Expiry Date with urgency indicator */}
-        {isClient && expiryDate && !isExpired && formattedDate && (
+        {expiryDate && !isExpired && (
           <div className={cn(
             'flex items-center gap-2 p-3 rounded-lg',
             daysLeft && daysLeft <= 3 
@@ -227,7 +223,7 @@ export default function BonusCard({
             </svg>
             <div className="flex-1">
               <Text size="sm" className="font-medium">
-                {t('valid_until', { date: formattedDate })}
+                {t('valid_until', { date: formatExpiryDate(expiryDate) })}
               </Text>
               {daysLeft && daysLeft <= 7 && (
                 <Text size="xs" className="opacity-75">
@@ -241,28 +237,29 @@ export default function BonusCard({
 
         {/* Action Buttons - enhanced */}
         <div className="flex gap-3 pt-2">
-          <Button
+          <GradientButton
             variant="casino"
             size="md"
             className="flex-1"
-            disabled={isClient && isExpired}
-            onClick={(e: React.MouseEvent) => {
+            disabled={isExpired}
+            glow={featured}
+            onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              if (!isClient || !isExpired) {
+              if (!isExpired) {
                 window.location.href = `/bonuses/${bonus.slug}`;
               }
             }}
           >
-            {isClient && isExpired ? t('expired') : t('view_details')}
-          </Button>
+            {isExpired ? t('expired') : t('view_details')}
+          </GradientButton>
 
-          {bonus.casino_review && !(isClient && bonus.valid_until && isExpired) && (
+          {bonus.casino_review && !isExpired && (
             <Button
               variant="outline"
               size="md"
               className="border-gray-300 hover:border-gray-400"
-              onClick={(e: React.MouseEvent) => {
+              onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 window.location.href = `/casino-reviews/${bonus.casino_review.slug}`;
@@ -273,6 +270,6 @@ export default function BonusCard({
           )}
         </div>
       </div>
-    </div>
+    </Card>
   );
 } 

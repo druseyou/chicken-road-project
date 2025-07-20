@@ -212,11 +212,7 @@
     "valid_until": "Valido fino al {date}",
     "expired": "Scaduto",
     "view_details": "Dettagli",
-    "visit_casino": "Visita casinò",
-    "no_casino_associated": "Casinò non specificato",
-    "expires_tomorrow": "Scade domani",
-    "expires_in_days": "Scade tra {days} giorni",
-    "featured": "In evidenza"
+    "visit_casino": "Visita casinò"
   },
   "CommentCard": {
     "commented_on_casino": "Commento su casinò:",
