@@ -75,7 +75,11 @@
     "casinos": "Casinò",
     "slots": "Slot",
     "news": "Notizie",
-    "bonuses": "Bonus"
+    "bonuses": "Bonus",
+    "siteName": "Chicken Road",
+    "tagline": "Guida Casinò",
+    "playNow": "Gioca Ora",
+    "toggleMenu": "Menu"
   },
   "Navigation": {
     "home": "Home",
@@ -127,6 +131,7 @@
   },
   "Footer": {
     "description": "La tua guida affidabile nel mondo dei casinò online italiani",
+    "tagline": "Guida Casinò",
     "quickLinks": "Link rapidi",
     "legal": "Informazioni legali",
     "privacyPolicy": "Privacy Policy",
@@ -138,7 +143,19 @@
     "news": "Notizie",
     "contacts": "Contatti",
     "sitemap": "Mappa del sito",
-    "allRightsReserved": "Tutti i diritti riservati"
+    "allRightsReserved": "Tutti i diritti riservati",
+    "licensed": "Autorizzato",
+    "secure": "Sicuro",
+    "fastPayouts": "Pagamenti Veloci",
+    "newsletter": "Newsletter",
+    "newsletterDesc": "Ricevi le ultime notizie e bonus",
+    "emailPlaceholder": "La tua email",
+    "subscribe": "Iscriviti",
+    "followUs": "Seguici",
+    "responsibleGaming": "Gioca responsabilmente",
+    "ageRestriction": "Solo 18+",
+    "verified": "Verificato",
+    "disclaimer": "Attenzione: il gioco d'azzardo può creare dipendenza. Gioca responsabilmente e nei tuoi limiti. Questo sito è destinato solo a persone di età superiore ai 18 anni."
   },
   "CasinoReviewsPage": {
     "title": "Recensioni dei casinò",
@@ -217,8 +234,13 @@
     "provider": "Provider",
     "rtp": "RTP",
     "volatility": "Volatilità",
+    "minBet": "Puntata Min",
+    "maxBet": "Puntata Max",
+    "features": "Caratteristiche",
+    "description": "Descrizione",
     "playDemo": "Gioco demo",
-    "playForReal": "Gioca con soldi veri"
+    "playForReal": "Gioca con soldi veri",
+    "playNow": "Gioca Ora"
   },
   "BonusesPage": {
     "title": "Bonus",

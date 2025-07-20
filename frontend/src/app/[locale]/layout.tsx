@@ -26,15 +26,9 @@ interface LocaleLayoutProps {
 export async function generateMetadata({ params }: LocaleLayoutProps): Promise<Metadata> {
   const { locale } = await params;
   
-  // Для layout використовуємо базовий шлях
-  const canonicalUrl = getCanonicalUrl(locale, '/');
-  const alternates = getAlternateUrls('/');
-
+  // ✅ Видаляємо canonical - кожна сторінка встановлює свій власний
   return {
-    alternates: {
-      canonical: canonicalUrl,
-      languages: alternates,
-    },
+    // Можна залишити тільки базові дані, якщо потрібно
   };
 }
 

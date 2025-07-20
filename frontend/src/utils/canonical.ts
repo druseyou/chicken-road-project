@@ -2,50 +2,34 @@
  * Utility functions for generating canonical URLs with proper localization
  */
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://chicken-road-project.com';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 const DEFAULT_LOCALE = 'it';
 const SUPPORTED_LOCALES = ['it', 'en', 'uk'] as const;
 
 export type Locale = typeof SUPPORTED_LOCALES[number];
 
 /**
- * Generate canonical URL for the current page
+ * Generate canonical URL for the current page (relative)
  * Always points to the default locale version (it) for SEO
- * @param locale - Current locale (not used for canonical, always default)
- * @param pathname - Current pathname without locale prefix
- * @returns Canonical URL pointing to default locale
  */
 export function getCanonicalUrl(locale: string, pathname: string): string {
-  // Remove leading slash if present
   const cleanPath = pathname.startsWith('/') ? pathname.slice(1) : pathname;
-  
-  // Canonical always points to default locale (it) version
-  const canonicalUrl = cleanPath ? `${SITE_URL}/${cleanPath}` : SITE_URL;
-  
-  return canonicalUrl;
+  // ✅ Відносний URL - Next.js додасть metadataBase автоматично
+  return cleanPath ? `/${cleanPath}` : '/';
 }
 
 /**
- * Generate current page URL (for Open Graph, Twitter, etc.)
- * @param locale - Current locale
- * @param pathname - Current pathname without locale prefix
- * @returns Current page URL with locale
+ * Generate current page URL (absolute) for Open Graph
  */
 export function getCurrentUrl(locale: string, pathname: string): string {
-  // Remove leading slash if present
   const cleanPath = pathname.startsWith('/') ? pathname.slice(1) : pathname;
+  const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   
-  let currentUrl: string;
-  
-  // For default locale (it), don't include locale in URL
   if (locale === DEFAULT_LOCALE) {
-    currentUrl = cleanPath ? `${SITE_URL}/${cleanPath}` : SITE_URL;
+    return cleanPath ? `${SITE_URL}/${cleanPath}` : SITE_URL;
   } else {
-    // For other locales, include locale prefix
-    currentUrl = cleanPath ? `${SITE_URL}/${locale}/${cleanPath}` : `${SITE_URL}/${locale}`;
+    return cleanPath ? `${SITE_URL}/${locale}/${cleanPath}` : `${SITE_URL}/${locale}`;
   }
-  
-  return currentUrl;
 }
 
 /**
@@ -90,7 +74,7 @@ export function getAlternateUrls(pathname: string): Record<string, string> {
 export function getHrefLangLinks(pathname: string) {
   return SUPPORTED_LOCALES.map((locale) => ({
     hrefLang: locale,
-    href: getCanonicalUrl(locale, pathname),
+    href: getLocaleUrl(locale, pathname),
   }));
 }
 
