@@ -26,14 +26,18 @@ async function fetchStrapiData<T>(
 ): Promise<T[]> {
   try {
     console.log(`[${entityName}] Fetching from: ${path}`);
+    console.log(`[${entityName}] Params:`, params);
+    console.log(`[${entityName}] Locale:`, locale);
     
     // Add locale parameter if provided
     const finalParams = locale ? { ...params, locale } : params;
+    console.log(`[${entityName}] Final params:`, finalParams);
     
     const response: APIResponse<T[]> = await fetchAPI(path, finalParams);
+    console.log(`[${entityName}] API response:`, response);
     
     if (response.error || !response.data) {
-      console.warn(`[${entityName}] No data found or API error`);
+      console.warn(`[${entityName}] No data found or API error:`, response.error);
       return [];
     }
     
@@ -56,6 +60,10 @@ async function fetchStrapiItem<T>(
   locale?: string
 ): Promise<T | null> {
   try {
+    console.log(`[${entityName}] Fetching item by slug: ${slug}`);
+    console.log(`[${entityName}] Locale: ${locale}`);
+    console.log(`[${entityName}] Populate: ${populate}`);
+    
     const params: Record<string, any> = {
       populate,
       filters: { slug: { $eq: slug } }
@@ -66,13 +74,17 @@ async function fetchStrapiItem<T>(
       params.locale = locale;
     }
     
+    console.log(`[${entityName}] Final params:`, params);
+    
     const response: APIResponse<T[]> = await fetchAPI(path, params);
+    console.log(`[${entityName}] API response:`, response);
     
     if (response.error || !response.data || response.data.length === 0) {
-      console.warn(`[${entityName}] Item not found: ${slug}`);
+      console.warn(`[${entityName}] Item not found: ${slug}`, response.error);
       return null;
     }
     
+    console.log(`[${entityName}] Found item:`, response.data[0]);
     return response.data[0];
   } catch (error) {
     console.error(`[${entityName}] Error fetching item ${slug}:`, error);
@@ -163,9 +175,9 @@ export async function getCasinoBySlug(slug: string, locale: string): Promise<Cas
 export async function getSlots(locale: string): Promise<Slot[]> {
   const params = {
     populate: ['cover_image', 'category'],
-    fields: ['name', 'description', 'slug', 'provider', 'rating', 'rtp', 'volatility'],
+    fields: ['name', 'description', 'slug', 'provider', 'rating', 'rtp', 'volatility', 'is_popular', 'release_date'],
     'pagination[page]': 1,
-    'pagination[pageSize]': 10,
+    'pagination[pageSize]': 100,
     sort: 'rating:desc'
   };
   
@@ -291,7 +303,7 @@ export async function getBonusBySlug(slug: string, locale: string): Promise<Bonu
   return fetchStrapiItem<Bonus>(
     '/api/bonuses',
     slug,
-    ['casino_review.logo'],
+    ['casino_review.logo', 'casino_review'],
     'Bonus',
     locale
   );

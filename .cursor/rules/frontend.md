@@ -284,6 +284,12 @@ import CopyButton from '@/components/ui/CopyButton';
 
 // Don't use default exports for UI components (inconsistent pattern)
 export default function MyComponent() { ... }
+
+// DON'T create duplicate components in frontend/src/components/
+// ❌ NEVER create duplicate components like:
+// - CasinoCard.tsx AND CasinoCard.v2.tsx
+// - SlotCard.tsx AND SlotCard.v2.tsx
+// - ArticleCard.tsx AND ArticleCard.v2.tsx
 ```
 
 ### **✅ DO THIS INSTEAD**
@@ -336,6 +342,60 @@ import { colors, spacing, typography } from '@/ui/tokens';
 
 // In component props
 <Button size="lg" variant="casino">
+```
+
+## 🚫 **Component Duplication Prevention**
+
+### **STRICT RULE: No Duplicate Components**
+- **NEVER** create multiple versions of the same component (e.g., `CasinoCard.tsx` and `CasinoCard.v2.tsx`)
+- **ALWAYS** update existing components instead of creating new versions
+- **DELETE** old versions after updating components
+- **USE** version control (git) to track component changes, not file versioning
+
+### **When You Need to Update a Component:**
+```typescript
+// ✅ CORRECT: Update existing component
+// File: CasinoCard.tsx
+const CasinoCard = ({ casino, variant = 'default' }: Props) => {
+  // Updated implementation with new features
+  return <Card variant={variant}>...</Card>;
+};
+
+// ❌ WRONG: Creating duplicate
+// Files: CasinoCard.tsx + CasinoCard.v2.tsx
+```
+
+### **Refactoring Guidelines:**
+1. **Identify** the component that needs changes
+2. **Update** the existing component with new props/variants
+3. **Test** the updated component in all usage locations
+4. **Remove** any temporary or old versions
+5. **Update** imports across the project
+
+### **Component Evolution Pattern:**
+```typescript
+// Phase 1: Basic component
+const CasinoCard = ({ casino }: BasicProps) => { ... };
+
+// Phase 2: Enhanced component (SAME FILE)
+const CasinoCard = ({ casino, showDetails = false }: EnhancedProps) => {
+  // Backward compatible with default props
+  return showDetails ? <DetailedView /> : <BasicView />;
+};
+
+// Phase 3: Advanced component (SAME FILE)
+const CasinoCard = ({ 
+  casino, 
+  variant = 'basic',
+  showDetails = false 
+}: AdvancedProps) => {
+  // Multiple variants in one component
+  switch (variant) {
+    case 'detailed': return <DetailedView />;
+    case 'compact': return <CompactView />;
+    default: return <BasicView />;
+  }
+};
 ```
 
 ## 🔄 **Component Migration Guidelines**
@@ -396,4 +456,7 @@ Before submitting code, verify:
 - [ ] SEO meta tags included (for pages)
 - [ ] Follows naming conventions (PascalCase for components)
 - [ ] Uses consistent export pattern (`const Component = () => {}; export { Component };`)
-- [ ] No imports from deprecated `@/components/ui/` folder 
+- [ ] No imports from deprecated `@/components/ui/` folder
+- [ ] **NO duplicate components created** (no .v2, .v3, or similar versions)
+- [ ] **Updated existing components** instead of creating new versions
+- [ ] **Removed old/unused component versions** if any existed 

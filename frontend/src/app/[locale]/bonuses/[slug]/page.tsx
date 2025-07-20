@@ -10,7 +10,7 @@ import { Heading, Text, Button } from '@/ui/components/atoms';
 import { Card } from '@/ui/components/molecules';
 import { cn } from '@/ui/utils/cn';
 import { Bonus } from '@/types';
-import { CopyButton } from '@/ui/components/atoms/CopyButton';
+import { CopyButton } from '@/ui/components/atoms';
 
 interface BonusPageProps {
   params: Promise<{ locale: string; slug: string }>;
@@ -66,14 +66,23 @@ const bonusTypeColors = {
 
 export default async function BonusPage({ params }: BonusPageProps) {
   const { locale, slug } = await params;
+  console.log('[BonusPage] Received params:', { locale, slug });
+  
   const t = await getTranslations('BonusPage');
+  console.log('[BonusPage] Translations loaded for locale:', locale);
+  
+  console.log('[BonusPage] Fetching bonus by slug:', slug, 'with locale:', locale);
   const bonus = await getBonusBySlug(slug, locale);
+  console.log('[BonusPage] Bonus data received:', bonus);
 
   if (!bonus) {
+    console.warn('[BonusPage] Bonus not found, returning 404');
     notFound();
   }
 
-  const isExpired = bonus.valid_until ? new Date(bonus.valid_until) < new Date() : false;
+  // Use server time to avoid hydration mismatch
+  const serverTime = new Date();
+  const isExpired = bonus.valid_until ? new Date(bonus.valid_until) < serverTime : false;
   const expiryDate = bonus.valid_until ? new Date(bonus.valid_until) : null;
 
   const formatExpiryDate = (date: Date) => {
@@ -180,7 +189,7 @@ export default async function BonusPage({ params }: BonusPageProps) {
                   </div>
 
                   <Button
-                    variant="primary"
+                    variant="default"
                     size="lg"
                     disabled={isExpired}
                     asChild
@@ -276,23 +285,25 @@ export default async function BonusPage({ params }: BonusPageProps) {
           {/* Action Button */}
           <Card variant="default" padding="lg">
             <div className="text-center">
-              <Button
-                variant="primary"
-                size="lg"
-                className="w-full"
-                disabled={isExpired}
-                asChild
-              >
-                <Link href={bonus.casino_review ? `/casino-reviews/${bonus.casino_review.slug}` : '#'}>
-                  {isExpired ? t('expired') : t('claimBonus')}
-                </Link>
-              </Button>
-              
-              {!isExpired && (
-                <Text size="sm" className="text-gray-500 mt-2">
-                  {t('termsApply')}
-                </Text>
-              )}
+              <div suppressHydrationWarning>
+                <Button
+                  variant="default"
+                  size="lg"
+                  className="w-full"
+                  disabled={isExpired}
+                  asChild
+                >
+                  <Link href={bonus.casino_review ? `/casino-reviews/${bonus.casino_review.slug}` : '#'}>
+                    {isExpired ? t('expired') : t('claimBonus')}
+                  </Link>
+                </Button>
+                
+                {!isExpired && (
+                  <Text size="sm" className="text-gray-500 mt-2">
+                    {t('termsApply')}
+                  </Text>
+                )}
+              </div>
             </div>
           </Card>
         </div>

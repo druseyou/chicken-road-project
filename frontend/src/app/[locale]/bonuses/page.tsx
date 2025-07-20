@@ -3,14 +3,8 @@ import { getTranslations } from 'next-intl/server';
 import { Metadata } from 'next';
 import { getBonuses } from '@/services/strapi';
 import { getCanonicalUrl, getCurrentUrl, getAlternateUrls } from '@/utils/canonical';
-import BonusCard from '@/components/cards/BonusCard';
 import { Bonus } from '@/types';
-<<<<<<< HEAD
-=======
 import ServerBonusCard from '@/components/cards/ServerBonusCard';
-
-
->>>>>>> f6bd21b684bba0e37777eb9147f31aef0ead9c83
 
 interface BonusesPageProps {
   params: Promise<{ locale: string }>;
@@ -168,11 +162,7 @@ export default async function BonusesPage(props: BonusesPageProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {welcomeBonuses.map((bonus) => (
-<<<<<<< HEAD
-                <BonusCard 
-=======
                 <ServerBonusCard 
->>>>>>> f6bd21b684bba0e37777eb9147f31aef0ead9c83
                   key={bonus.id} 
                   bonus={bonus}
                   showCasino={true}
@@ -197,11 +187,7 @@ export default async function BonusesPage(props: BonusesPageProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {noDepositBonuses.map((bonus) => (
-<<<<<<< HEAD
-                <BonusCard 
-=======
                 <ServerBonusCard 
->>>>>>> f6bd21b684bba0e37777eb9147f31aef0ead9c83
                   key={bonus.id} 
                   bonus={bonus}
                   showCasino={true}
@@ -226,11 +212,7 @@ export default async function BonusesPage(props: BonusesPageProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {freeSpinsBonuses.map((bonus) => (
-<<<<<<< HEAD
-                <BonusCard 
-=======
                 <ServerBonusCard 
->>>>>>> f6bd21b684bba0e37777eb9147f31aef0ead9c83
                   key={bonus.id} 
                   bonus={bonus}
                   showCasino={true}
@@ -255,11 +237,7 @@ export default async function BonusesPage(props: BonusesPageProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {otherBonuses.map((bonus) => (
-<<<<<<< HEAD
-                <BonusCard 
-=======
                 <ServerBonusCard 
->>>>>>> f6bd21b684bba0e37777eb9147f31aef0ead9c83
                   key={bonus.id} 
                   bonus={bonus}
                   showCasino={true}

@@ -32,4 +32,5 @@ const CopyButton = ({ text, className = '' }: CopyButtonProps) => {
   );
 };
 
-export { CopyButton }; 
+export { CopyButton };
+export default CopyButton; 

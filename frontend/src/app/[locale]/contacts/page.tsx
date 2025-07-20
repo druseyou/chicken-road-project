@@ -1,51 +1,31 @@
+'use client';
+
 import { useTranslations } from 'next-intl';
-import { getTranslations } from 'next-intl/server';
-import { getCanonicalUrl, getAlternateUrls } from '@/utils/canonical';
-import { Metadata } from 'next';
-
-interface ContactsPageProps {
-  params: Promise<{
-    locale: string;
-  }>;
-}
-
-export async function generateMetadata({ params }: ContactsPageProps): Promise<Metadata> {
-  const { locale } = await params;
-  const t = await getTranslations('pages');
-  
-  const canonicalUrl = getCanonicalUrl(locale, '/contacts');
-  const alternates = getAlternateUrls('/contacts');
-
-  return {
-    title: t('contacts') + ' | Chicken Road Project',
-    description: 'Contact us for questions about casino reviews, slots and gambling information.',
-    alternates: {
-      canonical: canonicalUrl,
-      languages: alternates,
-    },
-    openGraph: {
-      title: t('contacts') + ' | Chicken Road Project',
-      description: 'Contact us for questions about casino reviews, slots and gambling information.',
-      url: canonicalUrl,
-      siteName: 'Chicken Road Project',
-      locale: locale,
-      type: 'website',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: t('contacts') + ' | Chicken Road Project',
-      description: 'Contact us for questions about casino reviews, slots and gambling information.',
-    },
-  };
-}
+import ContactForm from '@/components/forms/ContactForm';
+import { Heading } from '@/ui/components/atoms';
 
 export default function ContactsPage() {
-  const t = useTranslations('pages');
+  const t = useTranslations('ContactForm');
+
+  const handleFormSubmit = (data: any) => {
+    console.log('Contact form submitted:', data);
+    // Тут можна додати логіку відправки на сервер
+  };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-4">{t('contacts')}</h1>
-      <p>Content for Contacts page.</p>
+    <div className="min-h-screen bg-gray-50 py-12">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <Heading as="h1" size="3xl" className="mb-4">
+            {t('title')}
+          </Heading>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            {t('description')}
+          </p>
+        </div>
+
+        <ContactForm onSubmit={handleFormSubmit} />
+      </div>
     </div>
   );
 } 
