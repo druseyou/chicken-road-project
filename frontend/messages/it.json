@@ -217,8 +217,13 @@
     "provider": "Provider",
     "rtp": "RTP",
     "volatility": "Volatilità",
+    "minBet": "Puntata Min",
+    "maxBet": "Puntata Max",
+    "features": "Caratteristiche",
+    "description": "Descrizione",
     "playDemo": "Gioco demo",
-    "playForReal": "Gioca con soldi veri"
+    "playForReal": "Gioca con soldi veri",
+    "playNow": "Gioca Ora"
   },
   "BonusesPage": {
     "title": "Bonus",

@@ -217,8 +217,13 @@
     "provider": "Provider",
     "rtp": "RTP",
     "volatility": "Volatility",
+    "minBet": "Min Bet",
+    "maxBet": "Max Bet",
+    "features": "Features",
+    "description": "Description",
     "playDemo": "Play Demo",
-    "playForReal": "Play for Real"
+    "playForReal": "Play for Real",
+    "playNow": "Play Now"
   },
   "BonusesPage": {
     "title": "Bonuses",

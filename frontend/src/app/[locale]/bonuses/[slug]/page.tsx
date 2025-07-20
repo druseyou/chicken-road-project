@@ -16,10 +16,19 @@ interface BonusPageProps {
   params: Promise<{ locale: string; slug: string }>;
 }
 
-export async function generateMetadata({ 
-  params 
-}: BonusPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: BonusPageProps): Promise<Metadata> {
   const { locale, slug } = await params;
+  
+  const canonicalUrl = getCanonicalUrl(locale, `/bonuses/${slug}`);
+  
+  // 🔍 Debug логування
+  console.log('🔍 Bonus page metadata debug:', {
+    locale,
+    slug,
+    canonicalUrl,
+    SITE_URL: process.env.NEXT_PUBLIC_SITE_URL
+  });
+
   const bonus = await getBonusBySlug(slug, locale);
   
   if (!bonus) {
@@ -28,7 +37,6 @@ export async function generateMetadata({
     };
   }
 
-  const canonicalUrl = getCanonicalUrl(locale, `/bonuses/${slug}`);
   const currentUrl = getCurrentUrl(locale, `/bonuses/${slug}`);
   const alternates = getAlternateUrls(`/bonuses/${slug}`);
 
